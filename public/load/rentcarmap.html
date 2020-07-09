@@ -1,0 +1,15 @@
+<div ng-controller="RentCarMap as Admin">
+    <div class="tittlepage"><div class="tit">Praćenje automobila:</div></div>
+    <div>
+        <h3>{{$root.map_car_name}}</h3>
+        <h4>{{$root.map_renter_name}}</h4>
+    </div>
+    <div id="map"></div>
+    <div id="class" ng-repeat="marker in markers | orderBy : 'title'">
+        <a href="#" ng-click="openInfoWindow($event, marker)">{{marker.title}}</a>
+    </div>
+</div>
+
+
+
+

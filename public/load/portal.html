@@ -1,0 +1,90 @@
+<div class="tittlecars">
+    <h2>Izaberite automobile:</h2>
+</div>
+<div>
+    <div class="searchcar">
+        <div class="sort">
+            <select ng-model="order">
+                <option ng-selected="true" value="">Najnoviji</option>
+                <option value="brand_name">Po brendu</option>
+                <option value="class_name">Po klasi</option>
+                <option value="availble" ng-model="inverse">Po stanju</option>
+            </select>
+        </div>
+        <div class="search">
+            <input type="text" placeholder="pretraži automobil..." ng-model="search">
+        </div>
+    </div>
+    <section class="cars" id="cars">
+        <div class="carsflex">
+            <article class="car" ng-repeat="x in cars | filter : search | orderBy : order : true" ng-click="PrepareRentCar(x); sendreview(x.id, x.model, x.brand.brand_name);">
+                <div class="cartittle">
+                    {{x.brand.brand_name +' '+ x.model | uppercase}}
+                </div>
+                <div class="classname" style="background-color: {{x.class.class_color}}">
+                    {{x.class.class_name | uppercase}}
+                </div>
+
+                <img src="asset/img/cars/{{x.image}}" alt="Car Image">
+                <p>Na stanju: {{x.available}}</p>
+                <div class="buttonrent" ng-click="PrepareRentCar(x);">Iznajmi</div>
+            </article>
+        </div>
+    </section>
+</div>
+
+    <section class="aboutus" id="aboutus">
+        <div class="tittleinfo">
+            <h2>O nama</h2>
+        </div>
+        <div class="textinfo">
+            <p>{{info}}</p>
+        </div>
+    </section>
+    <section class="ratings">
+        <div class="tittlerating">
+            <h2>Oceni nas:</h2>
+        </div>
+        <div class="slider">
+            <div class="buttonschange">
+                <div class="arrow left" ng-click="perv()"><i class="fas fa-chevron-left"></i></div>
+                <div class="arrow right" ng-click="next()"><i class="fas fa-chevron-right"></i></div>
+            </div>
+            <div class="rating">
+                <h3>Ime: {{rating.name}}</h3>
+                <p><b>Poruka:</b> {{ rating.comment }}</p>
+                <div class="stars"><span ng-repeat="s in stars track by $index" ng-bind-html="s"></span></div>
+            </div>
+        </div>
+
+        <div class="ratingform">
+            <form>
+                <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusaddrt]">{{messageaddrt}}</div>
+                <div class="element">
+                    <label>Vaše ime: </label><br>
+                    <input type="text" ng-model="namert" placeholder="ime..">
+                </div>
+                <div class="element">
+                    <label>Vaša poruka: </label><br>
+                    <textarea ng-model="messagert" placeholder="poruka..."></textarea><br>
+                </div>
+                <div class="element">
+                    <label>Vaša ocena: </label><br>
+                    <div class="stars">
+                        <input type="radio" ng-model="rating" value="1">
+                        <i class='fas fa-star'></i>
+                        <input type="radio" ng-model="rating" value="2">
+                        <i class='fas fa-star'></i><i class='fas fa-star'></i>
+                        <input type="radio" ng-model="rating" value="3">
+                        <i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>
+                        <input type="radio" ng-model="rating" value="4">
+                        <i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>
+                        <input type="radio" ng-model="rating" value="5">
+                        <i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i><i class='fas fa-star'></i>
+                    </div>
+                </div>
+                <button ng-disabled="statusaddrt == true" ng-click="AddRating(namert, rating, messagert)">Pošalji</button>
+            </form>
+        </div>
+    </section>
+

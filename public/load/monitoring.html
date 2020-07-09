@@ -1,0 +1,328 @@
+<div ng-controller="Monitoring as Admin">
+    <div class="tittlepage"><div class="tit">Monitoring</div></div>
+    <div class="add">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[table1status]">{{table1message}}</div>
+        <div class="addtittle">Iznajmljeni automobili:</div>
+        <div class="search">
+            <input type="text" placeholder="pretraži..." ng-model="search">
+        </div>
+        <table>
+            <tr>
+                <th>Prati automobil</th>
+                <th>Ime i prezime</th>
+                <th>E-pošta</th>
+                <th>Mobilni telefon</th>
+                <th>JMBG</th>
+                <th>Adresa</th>
+                <th>Vreme kada je vozilo preuzeto</th>
+                <th>Period rentiranja</th>
+                <th>Istek rentiranja</th>
+                <th>Datum isteka rentiranja</th>
+                <th>Cena rentiranja</th>
+                <th>Automobil</th>
+                <th>Vrati na listu čekanja</th>
+                <th>Vrati automobil u opticaju</th>
+            </tr>
+            <tr ng-repeat="x in rentedcars | filter : search">
+                <td ng-click="prepareMapCar(x); $root.include = 'rentcarmap';" id="activefollowcar"><i class="fas fa-map-marker-alt"></i></td>
+                <td>{{x.name + ' ' + x.lastname}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.phone_number}}</td>
+                <td>{{x.JMBG}}</td>
+                <td>{{x.adress}}</td>
+                <td>{{x.rented_time}}</td>
+                <td>{{x.period_of_rent + ' dana'}}</td>
+                <td>{{end_renting_times[$index]}}</td>
+                <td>{{formatDate(x.end_renting_date)}}</td>
+                <td>{{x.price + " RSD"}}</td>
+                <td>{{x.car.brand.brand_name + ' ' + x.car.model | uppercase}}</td>
+                <td><button ng-disabled="table1status" ng-click="disallowcars(x.id)" ><i class="fas fa-undo-alt"></i></button></td>
+                <td><button ng-disabled="table1status" ng-click="deletercar(x.id)" ><i class="fas fa-undo-alt"></i></button></td>
+            </tr>
+        </table>
+        <div class="nocar" ng-if="rentedcars == ''">Nema iznajmljenih vozila!</div>
+    </div>
+
+    <div class="add">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[table2status]">{{table2message}}</div>
+        <div class="addtittle">Automobili na čekanju:</div>
+        <div class="search">
+            <input type="text" placeholder="pretraži..." ng-model="search1">
+        </div>
+        <table>
+            <tr class="thwordwrap">
+                <th>Ime i prezime</th>
+                <th>E-pošta</th>
+                <th>Mobilni telefon</th>
+                <th>JMBG</th>
+                <th>Adresa</th>
+                <th>Period rentiranja</th>
+                <th>Datum očekivanog preuzimanja</th>
+                <th>Datum isteka rentiranja</th>
+                <th>Cena</th>
+                <th>Automobil</th>
+                <th>Izmeni</th>
+                <th>Dozvoli</th>
+                <th>Vrati automobil u opticaju</th>
+            </tr>
+            <tr class="tdwordwrap" ng-repeat="x in rentedcarsonhold  | filter : search1">
+                <td>{{x.name + ' ' + x.lastname}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.phone_number}}</td>
+                <td>{{x.JMBG}}</td>
+                <td>{{x.adress}}</td>
+                <td>{{x.period_of_rent+ ' dana'}}</td>
+                <td>{{formatDate(x.start_renting_date)}}</td>
+                <td>{{formatDate(x.end_renting_date)}}</td>
+                <td>{{x.price | currency : 'RSD '}}</td>
+                <td>{{x.car.brand.brand_name + ' ' + x.car.model | uppercase}}</td>
+                <td><button ng-disabled="table2status" ng-click="editRentCar(x); $root.include = 'editrentedcar';" ><i class="fas fa-edit"></i></button></td>
+                <td><button ng-disabled="table2status" ng-click="allowcars(x.id)" ><i class="fas fa-check"></i></button></td>
+                <td><button ng-disabled="table2status" ng-click="deletercar1(x.id)" ><i class="fas fa-undo-alt"></i></i></button></td>
+            </tr>
+        </table>
+        <div class="nocar" ng-if="rentedcarsonhold == ''">Nema iznajmljenih vozila!</div>
+    </div>
+
+    <div class="add">
+        <div class="addtittle">Svi dostupni automobili</div>
+        <div class="search">
+            <input type="text" placeholder="pretraži..." ng-model="search2">
+        </div>
+        <table>
+            <tr class="thwordwrap">
+                <th>ID</th>
+                <th>Model</th>
+                <th>Brend</th>
+                <th>Klasa</th>
+                <th>Karoserija</th>
+                <th>Dostupno</th>
+                <th>Cena 24h</th>
+                <th>Cena 48h</th>
+                <th>Cena 72h</th>
+                <th>Cena 7 dana</th>
+                <th>Cena 14 dana</th>
+            </tr>
+            <tr class="tdwordwrap" ng-repeat="x in cars_list | filter : search2">
+                <td>{{x.id}}</td>
+                <td>{{x.model | uppercase}}</td>
+                <td>{{x.brand.brand_name | uppercase}}</td>
+                <td>{{x.class.class_name | uppercase}}</td>
+                <td>{{x.carBody.car_body_name | uppercase}}</td>
+                <td>{{x.available}}</td>
+                <td>{{x.price.one_day}} RSD</td>
+                <td>{{x.price.two_days}} RSD</td>
+                <td>{{x.price.three_days}} RSD</td>
+                <td>{{x.price.seven_days}} RSD</td>
+                <td>{{x.price.fourteen_days}} RSD</td>
+            </tr>
+        </table>
+        <div class="nocar" ng-if="rentedcarsonhold == ''">Nema iznajmljenih vozila!</div>
+    </div>
+
+    <div class="add">
+        <div class="addtittle">Dodaj iznajmljeno vozilo:</div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusrentcar]">{{messagerentcar}}</div>
+        <form class="forma">
+            <div class="elementform">
+                <label>Ime:</label><br>
+                <input type="text" ng-model="rent_car_name"/>
+            </div>
+
+            <div class="elementform">
+                <label>Prezime:</label><br>
+                <input type="text" ng-model="rent_car_lastname"/>
+            </div>
+
+            <div class="elementform">
+                <label>JMBG:</label><br>
+                <input type="number" ng-model="rent_car_JMBG"/>
+            </div>
+
+            <div class="elementform">
+                <label>E-pošta:</label><br>
+                <input type="email" ng-model="rent_car_email"/>
+            </div>
+
+            <div class="elementform">
+                <label>Mobilni telefon:</label><br>
+                <input type="text" ng-model="rent_car_mobile_phone"/>
+            </div>
+
+            <div class="rentcarel">
+                <label> Želim da automobil bude dostavljen na adresi? </label>
+                <input type="checkbox"  ng-model="val" >
+                <div class="adress" ng-show="val" >
+                    <label>Vaša adresa:</label><br>
+                    <input type="text" ng-model="rent_car_adress">
+                </div>
+            </div>
+
+            <div class="rentcarel">
+                <label>Odaberi vozilo:</label>
+                <select ng-model="rent_car">
+                    <option ng-repeat="car in cars_list track by $index" ng-if="car.available > 0" value="{{car.id}}">{{car.model + ' ' + car.brand.brand_name | uppercase}}</option>
+                </select>
+            </div>
+
+            <div  ng-show="rent_car != null" class="rentcarprice">
+                <div>
+                    <label>Od: </label>
+                    <input type="date" ng-model="rent_time_start">
+                </div>
+
+                <div>
+                    <label>Do: </label>
+                    <input type="date" ng-model="rent_time_end" ng-change="countPrice(rent_time_start, rent_time_end, rent_car);">
+                </div>
+
+                <div>
+                    <label>
+                        <b>Cena rentiranja: </b> {{rent_car_price}} RSD
+                    </label>
+                </div>
+            </div>
+
+            <div class="buttonadd">
+                <button ng-click="rentCar(rent_car, rent_car_name, rent_car_lastname, rent_car_JMBG, rent_car_email, rent_car_mobile_phone, rent_car_adress, rent_car_price, rent_time_start, rent_time_end);">Pošalji</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="add">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[deletemsgstatus]">{{deletemsgmessage}}</div>
+        <div class="addtittle">Kontakt korisnika</div>
+        <table>
+            <tr>
+                <th>Ime i prezime</th>
+                <th>E-pošta</th>
+                <th>Poruka</th>
+                <th>Odgovori</th>
+                <th>Izbriši</th>
+            </tr>
+            <tr ng-repeat="x in messages track by $index">
+                <td>{{x.name + ' ' + x.lastname}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.message}}</td>
+                <td><button ng-click="prepareReplyMessage(x); $parent.showreplymessage = true;" ><i class="fas fa-reply-all"></i></button></td>
+                <td><button ng-click="deleteMessage(x.id);" ><i class="fas fa-times"></i></button></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div ng-show="showreplymessage" class="update">
+        <div class="updatetittle">Odgovori korisniku:</div>
+        <div class="exitupdate" ng-click="showreplymessage=false;"><i class="fas fa-times"></i></div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusreplymessage]">{{repplymessage}}</div>
+        <h3>Odgovori na:</h3>
+        <form class="forma">
+
+            <div class="elementform">
+                <label>Ime i prezime:</label>
+                <p><b>{{name + ' ' + lastname}}</b></p>
+            </div>
+            <div class="elementform">
+                <label>E-pošta:</label>
+                <p><b>{{email}}</b></p>
+            </div>
+            <div class="messageform">
+                <label>Poruka:</label>
+                <p>{{message}}</p>
+            </div>
+
+            <textarea ng-model="messagereply"></textarea>
+            <div class="buttonadd">
+                <button ng-disabled="statusreplymessage" ng-click="RepplyMessage(messagereply, email);">Pošalji</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="add">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[commentstatus1]">{{commentmessaage1}}</div>
+        <div class="addtittle">Zadnji dozvoljeni komentari</div>
+        <table>
+            <tr>
+                <th>Ime</th>
+                <th>E-pošta</th>
+                <th>Komentar</th>
+                <th>Vrati komentar</th>
+                <th>Izbriši</th>
+            </tr>
+            <tr ng-repeat="x in commentsallowed track by $index">
+                <td>{{x.name}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.comment}}</td>
+                <td><button ng-click="disallowComment(x.id);" ><i class="fas fa-times"></i></button></td>
+                <td><button ng-click="deleteComment1(x.id);" ><i class="fas fa-times"></i></button></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="add">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[commentstatus]">{{commentmessaage}}</div>
+        <div class="addtittle">Komentari na čekanju</div>
+        <table>
+            <tr>
+                <th>Ime</th>
+                <th>E-pošta</th>
+                <th>Komentar</th>
+                <th>Dozvoli</th>
+                <th>Izbriši</th>
+            </tr>
+            <tr ng-repeat="x in commentsonhold track by $index">
+                <td>{{x.name}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.comment}}</td>
+                <td><button ng-click="AllowComment(x.id);" ><i class="fas fa-check"></i></button></td>
+                <td><button ng-click="deleteComment2(x.id);" ><i class="fas fa-times"></i></button></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="add">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[ratings2status]">{{ratings2msg}}</div>
+        <div class="addtittle">Aktivne ocene korisnika:</div>
+        <table>
+            <tr>
+                <th>Ime i prezime</th>
+                <th>Ocena</th>
+                <th>Poruka</th>
+                <th>Izbrisi</th>
+            </tr>
+            <tr ng-repeat="x in allowratings track by $index">
+                <td>{{x.name}}</td>
+                <td>{{x.rating}}</td>
+                <td>{{x.comment}}</td>
+                <td><button ng-click="deleteRating2(x.id)" ><i class="fas fa-times"></i></button></td>
+            </tr>
+
+        </table>
+    </div>
+
+    <div class="add">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[ratings1status]">{{ratings1msg}}</div>
+        <div class="addtittle">Ocene na čekanju:</div>
+        <table>
+            <table>
+                <tr>
+                    <th>Ime i prezime</th>
+                    <th>Ocena</th>
+                    <th>Poruka</th>
+                    <th>Dozvoli</th>
+                    <th>Izbrisi</th>
+                </tr>
+                <tr ng-repeat="x in ratingsonhold track by $index">
+                    <td>{{x.name}}</td>
+                    <td>{{x.rating}}</td>
+                    <td>{{x.comment}}</td>
+                    <td><button ng-click="allowRating(x.id);" ><i class="fas fa-check"></i></button></td>
+                    <td><button ng-click="deleteRating(x.id);" ><i class="fas fa-times"></i></button></td>
+                </tr>
+
+            </table>
+        </table>
+    </div>
+</div>

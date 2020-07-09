@@ -1,0 +1,56 @@
+<div ng-controller="Profile as Admin">
+    <div class="tittlepage"><div class="tit">Vaš profil:</div></div>
+    <div class="add">
+        <div class="addtittle">Korisničko ime: {{ username | uppercase }}</div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusupdateuser]">{{messageupdateuser}}</div>
+            <form class="profileform">
+                <div class="avatar"><img ng-src="{{avatar_name}}" alt="Nema slike!">
+                <input type="file" id="updateavatar" onchange="angular.element(this).scope().imageAvatar(event)"></div>
+                <div class="detailsform">
+                    <label>Izmeni koisničko ime:</label>
+                    <label>
+                        <input type="text" ng-model="username" ng-disabled="username == 'admin'"/>
+                    </label>
+
+                    <label>Izmeni e-poštu:</label>
+                    <label>
+                        <input type="text" ng-model="email" ng-disabled="username == 'admin'"/>
+                    </label>
+
+                    <label>Izmeni ime:</label>
+                    <label>
+                        <input type="text" ng-model="name" ng-disabled="username == 'admin'"/>
+                    </label>
+
+                    <label>Izmeni prezime:</label>
+                    <label>
+                        <input type="text" ng-model="lastname" ng-disabled="username == 'admin'"/>
+                    </label>
+
+                    <label>Izmeni kontakt telefon:</label>
+                    <label>
+                        <input type="text" ng-model="phone_number" ng-disabled="username == 'admin'"/>
+                    </label>
+
+                    <label>Izmeni adresu:</label>
+                    <label>
+                        <input type="text" ng-model="adress" ng-disabled="username == 'admin'"/>
+                    </label>
+
+                    <label>Nova lozinka:</label>
+                    <label>
+                        <input type="password" ng-model="password">
+                    </label>
+
+                    <label>Potvrda nove lozinka:</label>
+                    <label>
+                        <input type="password" ng-model="cpassword">
+                    </label>
+
+                    <button ng-click="UpdateUser(username, email, name, lastname, password, cpassword, phone_number, adress)">Sačuvaj</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>

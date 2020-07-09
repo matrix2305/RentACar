@@ -1,0 +1,206 @@
+<div ng-controller="Cars as Admin">
+    <div class="tittlepage"><div class="tit">Automobili</div></div>
+    <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusdelcar]">{{messagedelcar}}</div>
+    <input type="text" placeholder="pretraži..." ng-model="search">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Model</th>
+            <th>Brend</th>
+            <th>Klasa</th>
+            <th>Karoserija</th>
+            <th>Vreme dodavanja</th>
+            <th>Vreme poslednje izmene</th>
+            <th>Izmeni</th>
+            <th>Izbrisi</th>
+        </tr>
+        <tr ng-repeat="x in cars_list | filter : search">
+            <td>{{x.id}}</td>
+            <td>{{x.model | uppercase}}</td>
+            <td>{{x.brand.brand_name | uppercase}}</td>
+            <td>{{x.class.class_name | uppercase}}</td>
+            <td>{{x.carBody.car_body_name | uppercase}}</td>
+            <td>{{x.created_at | uppercase}}</td>
+            <td>{{x.updated_at | uppercase}}</td>
+            <td><button ng-click="prepareUpdateCar(x); $parent.showupdatecar = true;" ><i class="far fa-edit"></i></button></td>
+            <td><button ng-click="deleteCar(x.id, x.model, x.brand.brand_name);" ><i class="fas fa-trash"></i></button></td>
+        </tr>
+    </table>
+    <div class="nocar" ng-if="cars_list == ''">Nema unetih vozila!</div>
+    <div class="update" ng-show="showupdatecar">
+        <div class="updatetittle">Izmeni automobil:</div>
+        <div class="exitupdate" ng-click="showupdatecar =false;"><i class="fas fa-times"></i></div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusupdatecar]">{{messageupdatecar}}</div>
+        <form class="forma">
+            <div class="elementform">
+                <label>Model:</label>
+                <label>
+                    <input type="text" ng-model="update_car_model" ng-focus="updatecar"/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Brend:</label>
+                <label>
+                    <select ng-model="update_car_brand_id">
+                        <option ng-repeat="b in brands_list"  value="{{b.id}}" ng-selected="update_car_brand_name == b.brand_name">{{b.brand_name | uppercase}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Karoserija:</label>
+                <label>
+                    <select ng-model="update_car_body_id">
+                        <option ng-repeat="cb in carbodies_list" value="{{cb.id}}" ng-selected="update_car_body_name == cb.car_body_name">{{cb.car_body_name | uppercase}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Klasa:</label>
+                <label>
+                    <select ng-model="update_car_class_id">
+                        <option ng-repeat="c in classes_list"  ng-value="c.id" ng-selected="update_car_class_name == c.class_name">{{c.class_name | uppercase}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Cena za 24 časa (RSD):</label>
+                <label>
+                    <input type="number" ng-model="update_car_price_24" >
+                </label><br>
+                <label>Cena za 48 časa (RSD):</label>
+                <label>
+                    <input type="number"  ng-model="update_car_price_48">
+                </label>
+                <label>Cena za 72 časa (RSD):</label>
+                <label>
+                    <input type="number"  ng-model="update_car_price_72">
+                </label>
+                <label>Cena za 7 dana (RSD):</label>
+                <label>
+                    <input type="number" ng-model="update_car_price_7_days">
+                </label>
+                <label>Cena za 14 dana (RSD):</label>
+                <label>
+                    <input type="number" ng-model="update_car_price_14_days">
+                </label>
+            </div>
+
+            <div class="elementform">
+                <label>Slika automobila:</label>
+                <input type="file" id="update_car_image" onchange="angular.element(this).scope().imageUpdateCar(event)" accept="image/*"><br><br>
+                <img ng-src = '{{imgupdatecar}}' alt="Nema slike!">
+            </div>
+
+            <div class="elementform">
+                <label>Dostupno automobila:</label>
+                <label>
+                    <input type="number" ng-model="update_car_available">
+                </label>
+            </div>
+
+            <div class="elementform">
+                <label>Pogon:</label>
+                <div ng-repeat="f in fuels_list">
+                    <label>
+                        <input type="checkbox" class="updatecarfuel" value="{{f.id}}">
+                    </label> {{f.fuel}}
+                </div>
+            </div>
+
+            <div class="buttonadd">
+                <button ng-click="UpdateCar(update_car_id, update_car_model, update_car_brand_id, update_car_body_id, update_car_class_id, update_car_price_24, update_car_price_48, update_car_price_72, update_car_price_7_days, update_car_price_14_days, update_car_available, update_last_image);">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="add">
+        <div class="addtittle">Dodaj automobil:</div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusaddcar]">{{messageaddcar}}</div>
+        <form class="forma">
+            <div class="elementform">
+                <label>Model:</label>
+                <label>
+                    <input type="text" ng-model="model" ng-focus="addcar"/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Brend:</label>
+                <label>
+                    <select ng-model="brand">
+                        <option value="">--Odaberite--</option>
+                        <option ng-repeat="b in brands_list"  value="{{b.id}}">{{b.brand_name | uppercase}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Karoserija:</label>
+                <label>
+                    <select ng-model="carbody">
+                        <option value="">--Odaberite--</option>
+                        <option ng-repeat="cb in carbodies_list" value="{{cb.id}}">{{cb.car_body_name | uppercase}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Klasa:</label>
+                <label>
+                    <select ng-model="carclass">
+                        <option value="">--Odaberite--</option>
+                        <option ng-repeat="c in classes_list"  value="{{c.id}}">{{c.class_name | uppercase}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Cena za 24 časa (RSD):</label>
+                <label>
+                    <input type="number" ng-model="price24">
+                </label>
+                <label>Cena za 48 časa (RSD):</label>
+                <label>
+                    <input type="number"  ng-model="price48">
+                </label>
+                <label>Cena za 72 časa (RSD):</label>
+                <label>
+                    <input type="number"  ng-model="price72">
+                </label>
+                <label>Cena za 7 dana (RSD):</label>
+                <label>
+                    <input type="number" ng-model="price7days">
+                </label>
+                <label>Cena za 14 dana (RSD):</label>
+                <label>
+                    <input type="number" ng-model="price14days">
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Slika automobila:</label>
+                <input type="file" id="add_car_image" onchange="angular.element(this).scope().imageAddCar(event)" accept="image/*"><br><br>
+                <img ng-src = '{{imgaddcar}}' alt="Nema slike!">
+            </div>
+
+            <div class="elementform">
+                <label>Dostupno automobila:</label>
+                <label>
+                    <input type="number" ng-model="available">
+                </label>
+            </div>
+
+            <div class="elementform">
+                <label>Pogon:</label>
+                <div ng-repeat="f in fuels_list">
+                    <label>
+                        <input type="checkbox" class="addcarfuel" name="fuel" value="{{f.id}}">
+                        {{f.fuel}}
+                    </label>
+                </div>
+            </div>
+
+            <div class="buttonadd">
+                <button ng-click="AddCar(model, brand, carbody, carclass, available, price24, price48, price72, price7days, price14days);">Pošalji</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+

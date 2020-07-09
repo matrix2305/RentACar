@@ -1,0 +1,160 @@
+<div ng-controller="Users as Admin">
+    <div class="tittlepage"><div class="tit">Korisnici</div></div>
+    <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusdeluser]">{{messagedeluser}}</div>
+    <div class="tablecars">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Korisničko ime</th>
+                <th>E-pošta</th>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>Uloga</th>
+                <th>Izmeni</th>
+                <th>Izbrisi</th>
+            </tr>
+            <tr class="tdwordwrap" ng-repeat="x in users_list">
+                <td>{{x.id}}</td>
+                <td>{{x.username | uppercase}}</td>
+                <td>{{x.email | uppercase}}</td>
+                <td>{{x.name | uppercase}}</td>
+                <td>{{x.lastname | uppercase}}</td>
+                <td>{{x.role.role_name | uppercase}}</td>
+                <td><button ng-click="prepareUserEdit(x); $parent.showupdateuser = true;" ><i class="far fa-edit"></i></button></td>
+                <td><button ng-disabled="x.username == 'admin'" ng-click="deleteUser(x.id, x.username);" ><i class="fas fa-user-times"></i></button></td>
+            </tr>
+        </table>
+    </div>
+    <div class="update" ng-show="showupdateuser">
+        <div class="updatetittle">Izmeni korisnika:</div>
+        <div class="exitupdate" ng-click="showupdateuser =false;"><i class="fas fa-times"></i></div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusupdateuser]">{{messageupdateuser}}</div>
+        <form class="forma">
+            <div class="elementform">
+                <label>Izmeni koisničko ime:</label>
+                <label>
+                    <input type="text" ng-model="updateUsername" ng-disabled="updateUsername == 'admin'"/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Izmeni e-poštu:</label>
+                <label>
+                    <input type="text" ng-model="updateEmail" ng-disabled="updateUsername == 'admin'"/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Unesite adresu: </label>
+                <label>
+                    <input type="text" ng-model="updateAdress" />
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Izmeni ime:</label>
+                <label>
+                    <input type="text" ng-model="updateName" ng-disabled="updateUsername == 'admin'"/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Izmeni prezime:</label>
+                <label>
+                    <input type="text" ng-model="updateLastname" ng-disabled="updateUsername == 'admin'"/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Izmeni ulogu korisnika:</label>
+                <label>
+                    <select ng-model="updateUserRole" ng-disabled="updateUsername == 'admin'">
+                        <option ng-repeat="r in role_list"  value="{{r.id}}" ng-selected="updateUserRole == r.roles_id">{{r.role_name | uppercase}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Izmeni kontakt telefon:</label>
+                <label>
+                    <input type="text" ng-model="updatePhoneNum" ng-disabled="updateUsername == 'admin'"/>
+                </label>
+            </div>
+
+            <div class="elementform" id="avatar">
+                <label>Izmeni avatar:</label>
+                <input type="file" id="update_avatar_user" onchange="angular.element(this).scope().imageAvatar(event)" accept="image/*"><br><br>
+                <img ng-src = '{{updateimgav}}' alt="Nema avatara!">
+            </div>
+
+            <div class="elementform">
+                <label>Nova lozinka:</label>
+                <label>
+                    <input type="password" ng-model="updateUserPassword">
+                </label><br>
+            </div>
+
+            <div class="elementform">
+                <label>Potvrda nove lozinka:</label>
+                <label>
+                    <input type="password" ng-model="updateUserCPassword">
+                </label>
+            </div>
+
+            <div class="buttonadd">
+                <button ng-click="UpdateUser(updateUserId, updateUsername, updateEmail, updateName, updateLastname, updateUserPassword, updateUserCPassword, updatePhoneNum, updateUserRole, updateAdress);">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+    <div class="add">
+        <div class="addtittle">Dodaj korisnika:</div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusadduser]">{{messageadduser}}</div>
+        <form class="forma">
+            <div class="elementform">
+                <label>Unesite korisničko ime: *</label>
+                <label>
+                    <input type="text" ng-model="add_user_username" required/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Unesite ime: *</label>
+                <label>
+                    <input type="text" ng-model="add_user_name" required/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Unesite prezime: *</label>
+                <label>
+                    <input type="text" ng-model="add_user_lastname" required/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Unesite adresu: </label>
+                <label>
+                    <input type="text" ng-model="add_user_adress" />
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Unesite e-poštu: *</label>
+                <label>
+                    <input type="email" ng-model="add_user_email" required>
+                </label>
+            </div>
+            <div class="elementform" style="flex-basis: 250px;">
+                <label>Uloga korisnika:</label>
+                <label>
+                    <select ng-model="add_user_role">
+                        <option ng-repeat="r in role_list"  value="{{r.id}}" >{{r.role_name | uppercase}}</option>
+                    </select>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Unesite lozinku: *</label>
+                <label>
+                    <input type="password" ng-model="add_user_password" ng-focus="passfocus" required/>
+                </label>
+            </div>
+            <div class="elementform">
+                <label>Potvrdite lozinku: *</label>
+                <label>
+                    <input type="password" ng-model="add_user_cpassword" ng-focus="passfocus" required/>
+                </label>
+            </div>
+            <button class="buttonadd" ng-click="AddUser(add_user_username, add_user_name, add_user_lastname, add_user_email, add_user_role, add_user_password, add_user_cpassword, add_user_adress);">Dodaj korisnika</button>
+        </form>
+    </div>
+</div>

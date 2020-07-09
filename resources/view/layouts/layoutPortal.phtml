@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <title>Rent a car - application</title>
+    <meta charset="utf-8">
+    <meta name="description" content="application for rent a car">
+    <link rel="stylesheet" href="/public/asset/css/style.css" type="text/css" media="screen" />
+    <script src="/public/asset/js/angular.js"></script>
+    <script src="/public/asset/js/angular-sanitize.js"></script>
+    <script src="https://kit.fontawesome.com/dd9d49e9ef.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,400;0,500;0,600;0,700;1,100;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+</head>
+<body  ng-app="MyApp" ng-controller="Portal">
+<header class="container">
+    <div class="header">
+        <div class="logo">
+            <a href="/index.php"><img src="/public/asset/img/logo-speed.png" alt="logo"></a>
+            <div class="socialnetworkicons">
+                <?php
+                if(!empty($socnet->facebook_url)){
+                    echo "<a href='{$socnet->facebook_url}'><i class='fab fa-facebook-square'></i></a>";
+                }
+                if(!empty($socnet->instagram_url)){
+                    echo "<a href='{$socnet->instagram_url}'><i class='fab fa-instagram-square'></i></a>";
+                }
+                ?>
+            </div>
+            <nav class="topnav">
+                <ul>
+                    <li><a id="{{first}}" href="/" ng-init="first = 'activemenu'" ng-click="first = 'activemenu'; $root.include = 'portal'; second = false; third =  false; fourth=false;">Početna</a></li>
+                    <li><a id="{{second}}" href="#cars" ng-click="$root.include = 'portal'; first = false; second = 'activemenu'; third =  false; fourth = false;">Automobili</a></li>
+                    <li><a id="{{third}}" href="#aboutus" ng-click="$root.include = 'portal'; first = false; second = false; third =  'activemenu'; fourth = false;">O nama</a></li>
+                    <li><a id="{{fourth}}" href="#contactus" ng-click="$root.include = 'portal'; first = false; second = false; third =  false; fourth = 'activemenu'">Kontakt</a></li>
+                    <?php
+                    if(\App\Helpers::CheckLoggedIn()){
+                        if($user->role->role_name=='administrator'){
+                            echo "<li><a href='/adminpanel'>". $user->username.' '."({$user->role->role_name}) </a></li>";
+                            echo "<li><a href='logout'>Odjavi se</a></li>";
+                        }elseif ($user->role->role_name=='moderator'){
+                            echo "<li><a href='/moderatorpanel'>". $user->username.' '."({$user->role->role_name}) </a></li>";
+                            echo "<li><a href='logout'>Odjavi se</a></li>";
+                        }elseif ($user->role->role_name=='korisnik'){
+                            echo "<li><a href='/userpanel'>". $user->username.' '."({$user->role->role_name}) </a></li>";
+                            echo "<li><a href='logout'>Odjavi se</a></li>";
+                        }
+                    }else{
+                        echo "<li><a href='/login'>Prijavi se</a></li>";
+                        echo "<li><a href='/register'>Registruj se</a></li>";
+                    }
+                    ?>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="frontimage" id="top">
+    <div class="imgopaticy">
+        <div class="fronttext">
+            <p>Iznajmi automobil kod najboljih i najpovoljnijih!</p>
+        </div>
+        <div class="arrowdown" ng-click="first = false; second = 'activemenu'; third =  false; fourth = false;">
+            <a href="#cars"> <i class="fas fa-angle-double-down"></i></a>
+
+        </div>
+    </div>
+</div>
+
+<div class="wrapper">
+        <?= $this->content ?>
+    <footer class="footer">
+        <p>Rent a car application 2020 &copy; by Srdjan Radosavljevic </p>
+    </footer>
+</div>
+
+

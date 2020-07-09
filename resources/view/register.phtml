@@ -1,0 +1,60 @@
+<img src="../asset/img/logo-speed.png">
+<h3>Registracija korisnika</h3>
+<?php
+if (isset($_SESSION['error']) and $message = $_SESSION['error']){
+    echo '<div class="message">'.
+        $message.
+        '<div/>';
+    unset($_SESSION['error']);
+}
+
+if (isset($_SESSION['success']) and $message = $_SESSION['success']){
+    echo '<div class="message">'.
+        $message.
+        '<div/>';
+    unset($_SESSION['success']);
+}
+
+?>
+<form action="/register" method="post">
+    <br>
+    <label for="username">
+        Korisničko ime: *
+    </label>
+    <input type="text" name="username" placeholder="Korisničko ime" required>
+    <br><br>
+    <label for="password">
+        Ime: *
+    </label>
+    <input type="text" name="name" placeholder="Ime" id="password" required>
+    <br><br>
+    <label for="username">
+        Prezime: *
+    </label>
+    <input type="text" name="lastname" placeholder="Prezime" required>
+    <br><br>
+    <label for="username">
+        Adresa: *
+    </label>
+    <input type="text" name="adress" placeholder="Adresa" required>
+    <br><br>    <label for="username">
+       E-pošta: *
+    </label>
+    <input type="email" name="email" placeholder="E-pošta"  required>
+    <br><br>
+    <label for="password">
+        Lozinka: *
+    </label>
+    <input type="password" name="password" placeholder="Lozinka" required>
+    <br><br>
+    <label for="password">
+        Potvda lozinke: *
+    </label>
+    <input type="password" name="cpassword" placeholder="Potvrda lozinke" required>
+    <br><br>
+    <input type="submit" value="Registruj se">
+    <br>
+    <div class="buttonforlogin">
+        <a href="/"><i class="fas fa-arrow-left"></i></a>
+    </div>
+</form>

@@ -1,0 +1,42 @@
+<div class="flex">
+    <aside class="sidebar" >
+        <ul>
+            <li class="primaryli"><span ng-class="{'active': first , 'span' : true}" ng-init="first = true; monitoring = 'active'" ng-click="$root.include = 'monitoring'; firsttab = 'activetab'; secondtab = false ; first = true; second = false; third = false; monitoring='active'; statistic = false; content = false; info = false">Pregled</span>
+                <ul ng-show="first">
+                    <li id='{{monitoring}}' ng-click="$root.include = 'monitoring'; firsttab = 'activetab'; monitoring = 'active';  statistic = false">Monitoring</li>
+                    <li id='{{statistic}}' ng-click="$root.include = 'statistic'; firsttab = false; statistic = 'active'; monitoring = false">Statistika</li>
+                </ul>
+            </li>
+            <li class="primaryli"><span ng-class="{'active': second , 'span' : true}" ng-click="$root.include = 'cars'; firsttab = false; first = false; second = true; third = false; secondtab = false ; cars = 'active'; content = false; info = false ; brands = false; carbodies = false; classes = false; fuels = false;">Uređuj automobile</span>
+                <ul ng-show="second">
+                    <li id="{{cars}}" ng-click="$root.include = 'cars'; cars = 'active'; brands = false; carbodies = false; classes = false; fuels = false; ">Automobili</li>
+                    <li id="{{brands}}" ng-click="$root.include = 'brands';cars = false; brands = 'active'; carbodies = false; classes = false; fuels = false; ">Brendovi</li>
+                    <li id="{{carbodies}}" ng-click="$root.include = 'carbodies'; cars = false; brands = false; carbodies = 'active'; classes = false; fuels = false; ">Karoserije</li>
+                    <li id="{{classes}}" ng-click="$root.include = 'classes'; cars = false; brands = false; carbodies = false; classes = 'active'; fuels = false; ">Klase</li>
+                    <li id="{{fuels}}" ng-click="$root.include = 'fuels'; cars = false; brands = false; carbodies = false; classes = false; fuels = 'active'; ">Pogoni</li>
+                </ul>
+            </li>
+            <li class="primaryli"><span ng-class="{'active': third, 'span' : true}" ng-click="$root.include = 'users'; firsttab = false; first = false; second = false; third = true; secondtab = false ; users='active'; addcar = false; content = false; info = false; adduser = false;">Uređuj korisnike</span></li>
+            <li class="primaryli"><span ng-class="{'active': content, 'span' : true}" ng-click="$root.include = 'content'; firsttab = false; first = false; second = false; third = false; secondtab = false ; content = true; info = false">Uređuj sadržaj</span></li>
+            <li class="primaryli"><span ng-class="{'active': info, 'span' : true}" ng-click="$root.include = 'info'; firsttab = false; first = false; second = false; third = false; secondtab = false ; info = true; content = false">Informacije</span></li>
+        </ul>
+    </aside>
+    <main class="main">
+        <div class="container" ng-include="'/load/' + $root.include + '.html'">
+
+        </div>
+    </main>
+</div>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=sr"></script>
+<script src="/public/asset/js/Panel.js"></script>
+<script src="/public/asset/js/Monitoring.js"></script>
+<script src="/public/asset/js/Statistic.js"></script>
+<script src="/public/asset/js/Cars.js"></script>
+<script src="/public/asset/js/Brands.js"></script>
+<script src="/public/asset/js/CarBodies.js"></script>
+<script src="/public/asset/js/Classes.js"></script>
+<script src="/public/asset/js/Fuels.js"></script>
+<script src="/public/asset/js/Users.js"></script>
+<script src="/public/asset/js/Content.js"></script>
+<script src="/public/asset/js/Profile.js"></script>
+<script src="/public/asset/js/RentCarMap.js"></script>

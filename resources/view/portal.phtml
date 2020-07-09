@@ -1,0 +1,45 @@
+<div ng-include="'/load/'+ include + '.html'">
+
+</div>
+<div class="contact" id="contactus">
+    <div class="arrowup">
+        <a href="#top"><i class="fas fa-arrow-up"></i></a>
+    </div>
+    <div class="tittlecontact">
+        <h2>Kontakt</h2>
+    </div>
+    <div class="contactinfo">
+        <p>{{contacts[0].name}}</p>
+        <p><b>E-pošta:</b> {{contacts[0].email}}</p>
+        <p><b>Mobilni broj:</b> {{contacts[0].mobile_number}}</p>
+        <p><b>Fiksni broj:</b> {{contacts[0].fix_number}}</p>
+        <p><b>Adresa:</b> {{contacts[0].adress}}</p>
+    </div>
+
+    <div id="map"></div>
+
+
+    <div class="contactform">
+        <form>
+            <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusconag]">{{messageconag}}</div>
+            <label> Ime: *</label>
+            <input type="text"  ng-model="firstname" placeholder="vaše ime..">
+
+            <label>Prezime: *</label>
+            <input type="text" ng-model="lastname" placeholder="vaše prezime..">
+
+            <label>Email: * </label>
+            <input type="email" ng-model="email" placeholder="vaša e-pošta..">
+
+            <label>Poruka: </label>
+            <textarea ng-model="message" placeholder="poruka..." style="height:200px"></textarea>
+
+            <button ng-disabled="statusconag == true" ng-click="contactAgency(firstname, lastname, email, message)">Pošalji</button>
+        </form>
+    </div>
+</div>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD94xpvDy5MWPo8cfYH5pDrurXnt2uo6Ao&callback=initMap">
+</script>
+<script type="text/javascript" src="/public/asset/js/Portal.js"></script>
+<script type="text/javascript" src="/public/asset/js/InitMapPortal.js"></script>

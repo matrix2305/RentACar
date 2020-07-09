@@ -1,0 +1,46 @@
+<div ng-controller="Fuels as Admin">
+    <div class="tittlepage"><div class="tit">Pogoni</div></div>
+    <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusdelfuel]">{{messagedelfuel}}</div>
+    <input type="text" placeholder="pretraži..." ng-model="search">
+    <div class="tablecars">
+
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Pogon</th>
+                <th>Izmeni</th>
+                <th>Izbrisi</th>
+            </tr>
+            <tr ng-repeat="x in fuels_list | filter : search">
+                <td>{{x.id}}</td>
+                <td>{{x.fuel | uppercase}}</td>
+                <td><button ng-click="$parent.update_fuel_id = x.id; $parent.update_fuel_name = x.fuel; $parent.showupdatefuel = true;" ><i class="far fa-edit"></i></button></td>
+                <td><button ng-click="deleteFuel(x.id, x.fuel);" ><i class="fas fa-trash"></i></button></td>
+            </tr>
+        </table>
+    </div>
+    <div ng-show="showupdatefuel" class="update">
+        <div class="updatetittle">Izmeni pogon:</div>
+        <div class="exitupdate" ng-click="showupdatefuel = false;"><i class="fas fa-times"></i></div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusupdatefuel]">{{messageupdatefuel}}</div>
+        <form>
+            <label>
+                <input ng-model="update_fuel_name" type="text" ng-focus="updatefuel">
+            </label>
+            <button ng-click="UpdateFuel(update_fuel_id, update_fuel_name)">Sačuvaj</button>
+        </form>
+    </div>
+
+
+    <div class="add">
+        <div class="addtittle">Dodaj pogon:</div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusaddfuel]">{{messageaddfuel}}</div>
+        <form>
+            <label>
+                <input ng-model="fuelname" type="text" ng-focus="addfuel">
+            </label>
+            <button ng-click="AddFuel(fuelname)">Pošalji</button>
+        </form>
+    </div>
+</div>
+

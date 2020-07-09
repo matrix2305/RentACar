@@ -1,0 +1,41 @@
+<div>
+    <div class="tittlepage"><div class="tit">Monitoring</div></div>
+    <div class="add">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[table2status]">{{table2message}}</div>
+        <div class="addtittle">Iznajmljeni automobili:</div>
+        <div class="search">
+            <input type="text" placeholder="pretraži..." ng-model="search1">
+        </div>
+        <table>
+            <tr class="thwordwrap">
+                <th>Ime i prezime</th>
+                <th>E-pošta</th>
+                <th>Mobilni telefon</th>
+                <th>JMBG</th>
+                <th>Adresa</th>
+                <th>Period rentiranja</th>
+                <th>Datum očekivanog preuzimanja</th>
+                <th>Datum isteka rentiranja</th>
+                <th>Cena</th>
+                <th>Automobil</th>
+                <th>Izmeni</th>
+                <th>Vrati automobil u opticaju</th>
+            </tr>
+            <tr class="tdwordwrap" ng-repeat="x in rentedcars | filter : search1">
+                <td>{{x.name + ' ' + x.lastname}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.phone_number}}</td>
+                <td>{{x.JMBG}}</td>
+                <td>{{x.adress}}</td>
+                <td>{{x.period_of_rent+ ' dana'}}</td>
+                <td>{{formatDate(x.start_renting_date)}}</td>
+                <td>{{formatDate(x.end_renting_date)}}</td>
+                <td>{{x.price | currency : 'RSD '}}</td>
+                <td>{{x.car.brand.brand_name + ' ' + x.car.model | uppercase}}</td>
+                <td><button ng-disabled="x.allowed == 1" ng-click="editRentCar(x); $root.include = 'editrentedcaruser';" ><i class="fas fa-edit"></i></button></td>
+                <td><button ng-disabled="x.allowed == 1" ng-click="deletercar1(x.id)" ><i class="fas fa-undo-alt"></i></i></button></td>
+            </tr>
+        </table>
+        <div class="nocar" ng-if="rentedcars == ''">Nema iznajmljenih vozila!</div>
+    </div>
+</div>

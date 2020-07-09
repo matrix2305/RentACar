@@ -1,0 +1,29 @@
+{
+  "name": "vendor_name/html",
+  "description": "Rent a car application for agency!",
+  "minimum-stability": "stable",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "matrix98",
+      "email": "srki.rado@gmail.com"
+    }
+  ],
+
+  "autoload": {
+    "psr-4": {
+      "App\\": "app/"
+    }
+  },
+
+  "require": {
+    "ext-pdo": "*",
+    "ext-json": "*",
+    "symfony/yaml": "^5.1",
+    "valorin/zf2-phinx-module": "0.*"
+  },
+  "require-dev": {
+    "robmorgan/phinx": "^0.12.3",
+    "odan/phinx-migrations-generator": "^5.1"
+  }
+}

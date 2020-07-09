@@ -1,0 +1,52 @@
+<div ng-controller="Content as Admin">
+    <div class="tittlepage"><div class="tit">Sadržaj</div></div>
+    <div class="add">
+        <form class="contentform">
+            <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusupinfo]">{{messageupinfo}}</div>
+            <div class="addtittle">Izmeni tekst o nama:</div>
+            <label>
+                <textarea ng-model="update_info"  ng-focus="updateinfotxt">{{informations}}</textarea>
+            </label>
+            <div class="buttonadd">
+                <button ng-click="updateInfo(update_info)">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+    <div class="add">
+        <form class="contentform" >
+            <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusupconinfo]">{{messageupconinfo}}</div>
+            <div class="addtittle">Izmeni kontakt informacije:</div>
+            <label>Naziv: *</label>
+            <label>
+                <input type="text" ng-model="companyname" ng-focus="updateconinfo">
+            </label><br>
+            <label>E-pošta: *</label>
+            <label>
+                <input type="email" ng-model="companyemail" >
+            </label>
+            <label>Mobilni telefon: *</label>
+            <label>
+                <input type="text" ng-model="companymphone">
+            </label>
+            <label>Fiksni telefon: *</label>
+            <label>
+                <input type="text" ng-model="companyfphone">
+            </label>
+            <label>Adresa: *</label>
+            <label>
+                <input type="text" ng-model="companyadress">
+            </label>
+            <label>Facebook URL:</label>
+            <label>
+                <input type="text" ng-model="companyfburl">
+            </label>
+            <label>Instagram URL:</label>
+            <label>
+                <input type="text" ng-model="companyinsturl" >
+            </label>
+            <div class="buttonadd">
+                <button ng-click="updateConInfo(companyname, companyemail, companymphone, companyfphone, companyadress, companyfburl, companyinsturl)">Sačuvaj</button>
+            </div>
+        </form>
+    </div>
+</div>

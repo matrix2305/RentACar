@@ -1,0 +1,38 @@
+<img src="../asset/img/logo-speed.png">
+<h1>Login</h1>
+<form action="/login" method="post">
+    <label for="username">
+        <i class="fas fa-user"></i>
+    </label>
+    <input type="text" name="username" placeholder="Korisničko ime ili e-pošta" id="username" required>
+    <br><br>
+    <label for="password">
+        <i class="fas fa-lock"></i>
+    </label>
+    <input type="password" name="password" placeholder="Lozinka" id="password" required>
+    <br><br>
+    <input type="checkbox" name="remember" /> Zapamti me na ovom računaru<br><br>
+    <input type="submit" value="Prijavi se">
+    <br>
+    <?php
+    if (isset($_SESSION['error']) and $message = $_SESSION['error']){
+        echo '<div class="message">'.
+                $message.
+            '<div/>';
+        unset($_SESSION['error']);
+    }
+
+    if (isset($_SESSION['success']) and $message = $_SESSION['success']){
+        echo '<div class="message">'.
+            $message.
+            '<div/>';
+        unset($_SESSION['success']);
+    }
+
+    ?>
+    <p>Zaboravio sam lozinku, resetuj lozinku <a href="../../public/index.php">ovde.</a> </p>
+
+    <div class="buttonforlogin">
+        <a href="/"><i class="fas fa-arrow-left"></i></a>
+    </div>
+</form>

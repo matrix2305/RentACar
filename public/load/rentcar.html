@@ -1,0 +1,116 @@
+<div>
+    <div class="buttonforback" ng-click="$parent.include = 'portal'; $parent.messagerentcar = null; $parent.statusrentcar = null;">
+        <i class="fas fa-arrow-left"></i>
+    </div>
+    <div class="showcar" >
+        <div class="tittlecar">
+            <h1>{{car_name | uppercase}}</h1>
+        </div>
+        <div class="carinfo">
+            <p><b>Klasa:</b> {{car_class | uppercase}} </p>
+            <p><b>Karoserija:</b> {{car_body_name | uppercase}} <br></p>
+            <p><b>Pogon:</b><span> {{car_fuels[0].fuel}}</span><span ng-repeat="x in car_fuels" ng-hide="$index == 0">{{', '+x.fuel}}</span>.</p>
+            <p><b>Na stanju:</b> {{car_available | uppercase }} <br></p>
+            <p><b>Rezervisano:</b> {{car_reserved | uppercase }} <br></p>
+        </div>
+        <img src="/asset/img/cars/{{car_image}}" alt="Car image">
+    </div>
+    <div class="titlerent">
+        Iznajmi automobil:
+    </div>
+    <div class="racform">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusrentcar]">{{messagerentcar}}</div>
+        <form>
+            <div class="part">
+                <label>Ime:</label><br>
+                <input type="text" ng-disabled="yourprofile != false" ng-model="rent_car_name" required>
+            </div>
+
+            <div class="part">
+                <label>Prezime:</label><br>
+                <input type="text" ng-disabled="yourprofile != false" ng-model="rent_car_lastname" required>
+            </div>
+
+            <div class="part">
+                <label>JMBG:</label>
+                <input type="number" ng-model="rent_car_JMBG" required>
+            </div>
+
+            <div class="part">
+                <label>E-pošta:</label>
+                <input type="email" ng-disabled="yourprofile != false" ng-model="rent_car_email" required>
+            </div>
+
+            <div class="part">
+                <label>Mobilni telefon:</label>
+                <input type="text" ng-model="rent_car_mobile_phone"/>
+            </div>
+
+            <div class="part">
+                <label> Želim da automobil bude dostavljen na adresi? </label>
+                <input type="checkbox" ng-init="val=true" ng-click="rent_car_adress = ''" ng-model="val" ng-checked="true">
+                <div ng-show="val">
+                    <label>Vaša adresa:</label>
+                    <input type="text" ng-model="rent_car_adress">
+                </div>
+            </div>
+            <div class="part">
+                <div>
+                    <label>Od: </label>
+                    <input type="date" ng-model="renttimestart" required>
+                    <label>Do: </label>
+                    <input type="date" ng-model="renttimeend" ng-change="countPrice(renttimestart, renttimeend, car_id);" required>
+                </div>
+                <div class="rentprice">
+                    <label>
+                        <b>Cena rentiranja: </b> {{rent_car_price}} RSD
+                    </label>
+                </div>
+            </div>
+
+            <div class="sendbutton">
+                <button ng-click="rentCar(car_id, rent_car_name, rent_car_lastname, rent_car_JMBG, rent_car_email, rent_car_mobile_phone, rent_car_adress, rent_car_price, rent_time_start, rent_time_end);">Pošalji</button>
+            </div>
+        </form>
+    </div>
+    <div class="warning">
+        <p>Napomena sva polja naznačena sa * su obavezna.</p>
+        <p>Svi uneti podaci ne smeju se zloupotrebiti u skladu sa krivičnim zakonikom Republike Srbije!</p>
+    </div>
+    <div class="titlerent">
+        Dodaj komentar:
+    </div>
+    <div class="racform">
+        <form>
+            <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusaddcomment]">{{messageaddcomment}}</div>
+            <div class="part">
+                <label>Vaše ime: </label>
+                <input type="text" ng-model="name" required placeholder="ime.." required>
+            </div>
+            <div class="part">
+                <label>Vaša e-pošta: </label>
+                <input type="email" ng-model="email" required placeholder="e-pošta.." required>
+            </div>
+            <div class="part">
+                <label>Vaša komentar: </label>
+                <textarea ng-model="comment"  required placeholder="komentar..."></textarea>
+            </div>
+            <button class="sendbutton" ng-disabled="statusaddrt == true" ng-click="addComment(car_id, name, email, comment)">Pošalji</button>
+        </form>
+    </div>
+    <div class="commments">
+        <div class="tittlecomment">
+            Komentari
+        </div>
+        <div ng-if="commentsCar == false" class="messagetrue">Nema komentara za ovaj automobil!</div>
+        <div class="comment" ng-repeat="c in commentsCar">
+            <div class="commentName">
+                {{c.name}}
+            </div>
+            <div class="commentTime">
+                | {{c.created_at}}
+            </div>
+            <p>{{c.comment}}</p>
+        </div>
+    </div>
+</div>

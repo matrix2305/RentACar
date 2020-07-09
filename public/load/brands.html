@@ -1,0 +1,43 @@
+<div ng-controller="Brands as Admin">
+    <div class="tittlepage"><div class="tit">Brendovi</div></div>
+    <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusdelbrand]">{{messageupdateuser}}</div>
+    <input type="text" placeholder="pretraži..." ng-model="search">
+    <div class="tablecars">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Brend</th>
+                <th>Izmeni</th>
+                <th>Izbrisi</th>
+            </tr>
+            <tr ng-repeat="x in brands_list | filter : search">
+                <td>{{x.id}}</td>
+                <td>{{x.brand_name | uppercase}}</td>
+                <td><button ng-click="$parent.update_brand_name = x.brand_name; $parent.update_brand_id = x.id; $parent.showupdatebrand=true;" ><i class="far fa-edit"></i></button></td>
+                <td><button ng-click="deleteBrand(x.id, x.brand_name);" ><i class="fas fa-trash"></i></button></td>
+            </tr>
+        </table>
+    </div>
+    <div ng-show="showupdatebrand" class="update">
+        <div class="updatetittle">Izmeni brend:</div>
+        <div class="exitupdate" ng-click="showupdatebrand=false;"><i class="fas fa-times"></i></div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusupdatebrand]">{{messageupdatebrand}}</div>
+        <form>
+            <label>
+                <input ng-model="update_brand_name" type="text" ng-focus="updatebrand">
+            </label>
+            <button ng-click="UpdateBrand(update_brand_id, update_brand_name)">Sačuvaj</button>
+        </form>
+    </div>
+    <div class="add">
+        <div class="addtittle">Dodaj brend:</div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusaddbrand]">{{messageaddbrand}}</div>
+        <form>
+            <label>
+                <input ng-model="brandmodel" type="text" ng-focus="addbrand">
+            </label>
+            <button ng-click="AddBrand(brandmodel)">Pošalji</button>
+        </form>
+    </div>
+</div>
+

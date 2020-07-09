@@ -1,0 +1,75 @@
+<div ng-controller="User">
+    <div class="tittlepage"><div class="tit">Izmeni iznajmljeno vozilo:</div></div>
+    <div class="update">
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusrentcaredit]">{{messagerentcaredit}}</div>
+        <form class="forma">
+            <div class="elementform">
+                <label>Ime:</label><br>
+                <input ng-disabled="true" type="text" ng-model="editname"/>
+            </div>
+
+            <div class="elementform">
+                <label>Prezime:</label><br>
+                <input ng-disabled="true" type="text" ng-model="editlastname"/>
+            </div>
+
+            <div class="elementform">
+                <label>JMBG:</label><br>
+                <input type="text" required value="{{editJMBG}}" ng-model="editJMBG"/>
+            </div>
+
+            <div class="elementform">
+                <label>E-pošta:</label><br>
+                <input ng-disabled="true" type="email" ng-model="editEmail"/>
+            </div>
+
+            <div class="elementform">
+                <label>Mobilni telefon:</label><br>
+                <input  type="text" ng-model="editPhoneNum"/>
+            </div>
+
+            <div class="rentcarel">
+                <label> Adresa </label>
+                <div class="adress">
+                    <label>Vaša adresa:</label><br>
+                    <input type="text" ng-model="editAdress">
+                </div>
+            </div>
+
+            <div class="rentcarel">
+                <label>Odaberi vozilo:</label>
+                <select ng-model="editCarId">
+                    <option ng-repeat="car in cars_list" ng-selected="editCarId == car.id" value="{{car.id}}">{{car.model + ' ' + car.brand.brand_name | uppercase}}</option>
+                </select>
+            </div>
+
+            <div class="rentcarprice">
+                <div>
+                    <label>Vreme preuzimanja automobila: </label>
+                    <input type="date" value="{{startTime}}" ng-model="startTime">
+                </div>
+
+                <div>
+                    <label>Vreme vracanja automobila: </label>
+                    <input type="date" value="{{endTime}}" ng-model="endTime" ng-change="countPrice(startTime, endTime, editCarId);">
+                </div>
+
+                <div class="elementform">
+                    <label>
+                        <b>Stara cena rentiranja: </b> {{last_rent_car_price}} RSD
+                    </label>
+                </div>
+
+                <div class="elementform">
+                    <label>
+                        <b>Nova cena rentiranja: </b> {{rent_car_price}} RSD
+                    </label>
+                </div>
+            </div>
+
+            <div class="buttonadd">
+                <button ng-click="editsendrentCar(rent_car_id, editCarId, editname, editlastname, editJMBG, editEmail, editPhoneNum, editAdress, rent_car_price, rent_time_start, rent_time_end);">Pošalji</button>
+            </div>
+        </form>
+    </div>
+</div>

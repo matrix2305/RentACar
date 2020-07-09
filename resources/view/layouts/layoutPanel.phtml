@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <title>Administracioni panel - Rent a car Speed</title>
+    <meta charset="utf-8">
+    <meta name="description" content="application for rent a car">
+    <link rel="stylesheet" href="/public/asset/css/admin.css" type="text/css" media="screen" />
+    <script src="https://kit.fontawesome.com/dd9d49e9ef.js" crossorigin="anonymous"></script>
+    <script src="/public/asset/js/angular.js"></script>
+</head>
+<body ng-app="AdminApp" ng-controller="Admin">
+<div class="header">
+    <div class="hcontent">
+        <div class="logo">
+            <a href="<?= ($user->role->role_name=='administrator')? '/adminpanel' : '/moderatorpanel' ?>"><img src="/public/asset/img/logo-speed.png"></a>
+        </div>
+        <div class="tittle">
+            <a href="<?= ($user->role->role_name=='administrator')? '/adminpanel' : '/moderatorpanel' ?>"><h2> <?= ($user->role->role_name=='administrator')? 'Administracioni' : 'Moderacioni' ?> panel</h2></a>
+            <p>Dobrošao  <?= $user->role->role_name . 'e - '. $user->username ?></p>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="/">Portal</a> </li>
+                <li ><a id="{{firsttab}}" ng-init="firsttab = 'activetab';" ng-click="firsttab = 'activetab'; secondtab = false ; $root.include = 'monitoring'; first = true; monitoring = 'active'; second = false; third = false; info = false; content = false;">Početna</a></li>
+                <li ><a id="{{secondtab}}" ng-click="firsttab = false; secondtab = 'activetab' ; $root.include = 'profile'; first = false; second = false; third = false; info = false; content = false;">Profil</a></li>
+                <li><a href="?logout">Odjavi se</a> </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="content" >
+        <?= $this->content ?>
+    <footer class="footer">
+        <p>Rent a car application 2020 © by Srdjan Radosavljevic</p>
+    </footer>
+</div>
+
+</body>
+</html>
+
+

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+    <title>Korisnički panel - Rent a car Speed</title>
+    <meta charset="utf-8">
+    <meta name="description" content="application for rent a car">
+    <link rel="stylesheet" href="/public/asset/css/admin.css" type="text/css" media="screen" />
+    <script src="https://kit.fontawesome.com/dd9d49e9ef.js" crossorigin="anonymous"></script>
+    <script src="/public/asset/js/angular.js"></script>
+</head>
+<body ng-app="AdminApp" ng-controller="User">
+<div class="header">
+    <div class="hcontent">
+        <div class="logo">
+            <a href="/userpanel"><img src="/public/asset/img/logo-speed.png"></a>
+        </div>
+        <div class="tittle">
+            <a href="/userpanel"><h2> Korisnički panel</h2></a>
+            <p>Dobrošao korisniče -  <?= $user->username ?></p>
+        </div>
+        <nav class="navbar">
+            <ul>
+                <li><a href="/">Portal</a> </li>
+                <li ><a id="{{firsttab}}" ng-init="firsttab = 'activetab';" ng-click="firsttab = 'activetab'; secondtab = false ; $root.include = 'monitoringUser'; first = true; monitoring = 'active'; second = false; third = false; info = false; content = false;">Početna</a></li>
+                <li ><a id="{{secondtab}}" ng-click="firsttab = false; secondtab = 'activetab' ; $root.include = 'profileUser'; first = false; second = false; third = false; info = false; content = false;">Profil</a></li>
+                <li><a href="?logout">Odjavi se</a> </li>
+            </ul>
+        </nav>
+    </div>
+</div>
+<div class="content" >
+    <?= $this->content ?>
+    <footer class="footer">
+        <p>Rent a car application 2020 © by Srdjan Radosavljevic</p>
+    </footer>
+</div>
+
+</body>
+</html>

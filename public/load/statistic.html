@@ -1,0 +1,92 @@
+<div ng-controller="Statistic as Admin">
+    <div class="tittlepage"><div class="tit">Statistika</div></div>
+    <div class="add">
+        <div class="addtittle">Posećenost automobila</div>
+        <table>
+            <tr>
+                <th>Automobil</th>
+                <th>Broj pregleda</th>
+            </tr>
+            <tr ng-repeat="x in reviewcars">
+                <td>{{x.car_model+ ' ' + x.car_brand | uppercase}}</td>
+                <td>{{x.reviews}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="add">
+        <div class="addtittle">Poslednje aktivnosti korisnika</div>
+        <table>
+            <tr>
+                <th>Aktivnost</th>
+            </tr>
+            <tr ng-repeat="x in logs">
+                <td>{{x.log}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="add">
+        <div class="addtittle">Istorija iznajmljenih vozila</div>
+        <table>
+            <tr>
+                <th>Ime</th>
+                <th>Prezime</th>
+                <th>E-pošta</th>
+                <th>Kontakt telefon</th>
+                <th>JMBG</th>
+                <th>Adresa</th>
+                <th>Vreme rentiranja</th>
+                <th>Vreme isteka rentiranja</th>
+                <th>Period rentiranja</th>
+                <th>Cena</th>
+                <th>Vreme naručivanja</th>
+                <th>Vreme vraćanja vozila</th>
+                <th>Automobil</th>
+            </tr>
+            <tr ng-repeat="x in historyrcars">
+                <td>{{x.name}}</td>
+                <td>{{x.lastname}}</td>
+                <td>{{x.email}}</td>
+                <td>{{x.phone_number}}</td>
+                <td>{{x.JMBG}}</td>
+                <td>{{x.adress}}</td>
+                <td>{{x.rented_time}}</td>
+                <td>{{x.end_renting_time}}</td>
+                <td>{{x.period_of_rent}}</td>
+                <td>{{x.price}}</td>
+                <td>{{x.time_added}}</td>
+                <td>{{x.time_deleted}}</td>
+                <td>{{x.car.brand.brand_name + ' ' + x.car.model | uppercase}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="add">
+        <div class="addtittle">Posećenost stranica</div>
+        <table>
+            <tr>
+                <th>Putanja</th>
+                <th>Broj pregleda</th>
+            </tr>
+            <tr ng-repeat="x in reviewpages">
+                <td>{{x.path}}</td>
+                <td>{{x.reviews}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div class="add">
+        <div class="addtittle">Poslednje aktivnosti</div>
+        <table>
+            <tr>
+                <th>IP Adresa</th>
+                <th>Putanja</th>
+            </tr>
+            <tr ng-repeat="x in activity">
+                <td>{{x.ip_adress}}</td>
+                <td>{{x.path}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

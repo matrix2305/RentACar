@@ -1,0 +1,50 @@
+<div ng-controller="Classes as Admin">
+    <div class="tittlepage"><div class="tit">Klase</div></div>
+    <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusdelclass]">{{messagedelclass}}</div>
+    <input type="text" placeholder="pretraži..." ng-model="search">
+    <div class="tablecars">
+        <table>
+            <tr>
+                <th>ID</th>
+                <th>Klasa</th>
+                <th>Boja</th>
+                <th>Izmeni</th>
+                <th>Izbrisi</th>
+            </tr>
+            <tr ng-repeat="x in classes_list | filter : search">
+                <td>{{x.id}}</td>
+                <td>{{x.class_name | uppercase}}</td>
+                <td style="background-color: {{x.class_color}};">{{x.class_color}}</td>
+                <td><button ng-click="$parent.update_class_name = x.class_name; $parent.update_class_id = x.id; $parent.showupdateclass = true;" ><i class="far fa-edit"></i></button></td>
+                <td><button ng-click="deleteClass(x.id, x.class_name);" ><i class="fas fa-trash"></i></button></td>
+            </tr>
+        </table>
+    </div>
+    <div ng-show="showupdateclass" class="update">
+        <div class="updatetittle">Izmeni klasu:</div>
+        <div class="exitupdate" ng-click="showupdateclass = false;"><i class="fas fa-times"></i></div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusupdateclss]">{{messageupdateclass}}</div>
+        <form>
+            <label>
+                <input ng-model="update_class_name" type="text" ng-focus="classufocus">
+            </label>
+            <label>
+                <input ng-model="update_class_color" type="color" ng-focus="classufocus">
+            </label>
+            <button ng-click="UpdateClass(update_class_id, update_class_name, update_class_color)">Sačuvaj</button>
+        </form>
+    </div>
+    <div class="add">
+        <div class="addtittle">Dodaj klasu:</div>
+        <div ng-class="{true: 'messagetrue', false: 'messagefalse'}[statusaddclass]">{{messageaddclass}}</div>
+        <form>
+            <label>
+                <input ng-model="classname" type="text" ng-focus="classfocus">
+            </label>
+            <label>
+                <input ng-model="classcolor" type="color" ng-focus="classufocus">
+            </label>
+            <button ng-click="AddClass(classname, classcolor)">Pošalji</button>
+        </form>
+    </div>
+</div>

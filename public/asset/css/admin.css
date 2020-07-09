@@ -1,0 +1,684 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+/* style for links */
+a:link, a:visited {
+    color: #a20700;
+    text-decoration: none;
+    font-weight: 500;
+}
+a:hover {
+    color: #4F0103;
+    text-decoration: underline;
+}
+a:active {
+    color: #666666;
+}
+/* style for login load */
+
+.login{
+    width: 400px;
+    margin: 60px auto;
+}
+
+.form{
+    text-align: center;
+    margin: 0 auto;
+    width: 300px;
+    padding: 15px;
+    background-color: #cbcbcb;
+    border-radius: 3px;
+}
+
+.form img{
+    width: 150px;
+    padding: 5px;
+}
+
+.buttonforlogin{
+    position: fixed;
+    top: 15px;
+    left: 15px;
+}
+
+.buttonforlogin i{
+    font-size: 25px;
+}
+
+.messagefalse{
+    background-color: #f15454;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+.messagetrue{
+    background-color: #8efc70;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+.contentform{
+    margin: 50px 0 30px 0;
+    padding: 15px 15px 50px 15px;
+}
+
+/* style for header */
+.header{
+    color: black;
+    border-bottom: 10px solid #af0600;
+    background-color: #ffffff;
+    display: flow-root;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    width: 100%;
+}
+
+.hcontent{
+    margin: 0 auto;
+    width: 1064px;
+    display: flow-root;
+    position: relative;
+}
+
+.logo{
+    float: left;
+    padding: 5px;
+}
+
+.logo img{
+    width: 120px;
+    padding: 15px;
+}
+.tittle{
+    padding: 15px;
+    float: left;
+    color: black;
+}
+.tittle a{
+    color: black;
+}
+
+.tittle a:hover{
+    text-decoration: none;
+}
+
+.tittle h2{
+    margin: 0;
+    font-size: 20px;
+    padding: 5px 0 5px 0;
+}
+
+.tittle p{
+    margin: 0;
+}
+
+.navbar{
+    position: absolute;
+    bottom: 0;
+    right: 5px;
+}
+
+.navbar ul{
+    list-style: none;
+    overflow: hidden;
+    padding: 5px;
+    margin: 0;
+}
+
+.navbar ul li{
+    float: left;
+}
+
+.navbar ul li a{
+    display: block;
+    padding: 5px;
+    color: black;
+    text-transform: uppercase;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+.navbar ul li:hover{
+    background-color: #ddd;
+}
+
+.navbar ul li a:hover{
+    background-color: #ddd;
+    text-decoration: none;
+}
+
+#activetab{
+    background-color: #af0600;
+    color: white;
+}
+
+.content{
+    width: 1064px;
+    margin: 15px auto;
+}
+
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: stretch;
+}
+/* style for sidebar */
+.sidebar{
+    order: 2;
+    flex-basis: 230px;
+    display: flow-root;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sidebar ul{
+    display: block;
+    list-style: none;
+    float: left;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.primaryli{
+    margin-bottom: 3px;
+    width: 100%;
+}
+
+.sidebar ul li{
+    display: block;
+    width: 100%;
+    float: left;
+    color: black;
+    padding: 0;
+    text-transform: uppercase;
+}
+
+.sidebar ul li span{
+    display: flow-root;
+    padding: 7px;
+    font-size: 16px;
+    border-bottom: 2px solid #9c0301;
+    border-top: 2px solid #9c0301;
+    color: white;
+}
+
+.span{
+    background-color: #af0600;
+}
+
+.sidebar ul li ul{
+    list-style: none;
+    float: left;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li ul li{
+    float: left;
+    display: block;
+    padding: 5px;
+    width: 229px;
+    background-color: #af0600;
+    color: white;
+}
+
+.sidebar ul li ul li:hover{
+    background-color: #c20600;
+    color: white;
+}
+
+.sidebar ul li span:hover{
+    background-color: #a30500;
+    color: white;
+}
+
+.sidebar ul li span:active{
+    background-color: #870300;
+}
+
+.sidebar ul li ul li:active{
+    background-color: #990702;
+}
+
+#active{
+    background-color: #a30500;
+    color: white;
+}
+
+.active{
+    background-color: #8d0500;
+    color: white;
+
+}
+
+#avatar img {
+    width: 150px;
+}
+
+.content{
+    -webkit-box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.62);
+    -moz-box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.62);
+    box-shadow: 0px 0px 19px -6px rgba(0,0,0,0.62);
+}
+
+.main{
+    flex-basis: 790px;
+    order: 1;
+    padding: 15px;
+}
+
+.mainUser{
+    padding: 15px;
+    width: 100%;
+}
+
+.container{
+    padding-top: 50px;
+    transition: all linear 0.5s;
+}
+
+.tittlepage{
+    position: relative;
+    top: -40px;
+    left: -15px;
+    background-color: #171f1f;
+    clip-path: polygon(0 0, 100% 0, 94% 100%, 0% 100%);
+    text-transform: uppercase;
+    font-size: 22px;
+    padding: 5px 30px 5px 5px;
+    color: white;
+    font-weight: bold;
+    width: 350px;
+    text-align: right;
+}
+
+
+table{
+    margin: 10px 0 10px 0;
+    border: 1px solid black;
+    table-layout: fixed;
+    width: 100%;
+    border-collapse:collapse;
+}
+
+td, th {
+    border: 1px solid #ddd;
+    padding: 3px;
+    text-align: center;
+    font-size: 13px;
+    word-wrap: break-word;
+}
+
+td{
+    display: table-cell;
+}
+
+tr:nth-child(even){background-color: #f2f2f2;}
+
+tr:hover {background-color: #ddd;}
+
+th {
+    text-align: center;
+    background-color: #bd0909;
+    color: white;
+}
+
+tr button{
+    width: 50px;
+    padding: 3px;
+}
+
+textarea{
+    resize: none;
+    height: 250px;
+}
+
+.update{
+    background-color: #d0d0d0;
+    padding: 50px 15px 15px 15px;
+    border-radius: 2px;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.updatetittle{
+    background-color: #171f1f;
+    font-size: 18px;
+    text-transform: uppercase;
+    width: 250px;
+    font-weight: 600;
+    padding: 5px 15px 5px 5px;
+    text-align: right;
+    color: white;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+.exitupdate{
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    font-size: 25px;
+    color: #171f1f;
+}
+
+.exitupdate i:hover{
+    color: #af0600;
+}
+
+.user{
+    margin: 0 auto;
+}
+
+.add{
+    position: relative;
+    padding-top: 50px;
+    margin: 0 0 15px 0;
+    display: flow-root;
+}
+
+.addtittle{
+    background-color: #af0600;
+    font-size: 18px;
+    text-transform: uppercase;
+    width: 300px;
+    font-weight: 600;
+    padding: 5px 15px 5px 5px;
+    text-align: right;
+    color: white;
+    position: absolute;
+    top: 5px;
+    left: -15px;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+
+.forma{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: relative;
+    font-size: 14px;
+    padding: 0 0 50px 0;
+}
+
+.forma img{
+    width: 300px;
+    display: block;
+}
+
+.elementform{
+    flex-basis: 150px;
+    margin: 15px;
+}
+
+.elementform input[type = 'number']{
+    margin: 5px 10px 10px 10px;
+}
+
+.messageform{
+    flex-basis: 300px;
+    margin: 15px;
+}
+
+.buttonadd{
+    position: absolute;
+    bottom: 0;
+    left: 15px;
+}
+
+.search{
+    width: 170px;
+    position: absolute;
+    right: 0;
+    top: -4px;
+}
+
+.footer{
+    clear: both;
+    background-color: #171f1f;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #c7c7c7;
+    color: white;
+    height: 60px;
+}
+
+
+input[type=text], select, textarea, input[type=email], input[type=password] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit], button {
+    background-color: #fccd12;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+input[type=submit]:hover, button:hover {
+    background-color: #DB9200;
+}
+
+input[type=date]{
+    width: 100px;
+    padding: 5px;
+    margin: 5px;
+}
+
+form{
+    border-top: 1px solid black;
+    margin: 30px 0 15px 0;
+}
+
+.rentcarel{
+    width: 300px;
+    padding: 5px;
+    margin: 15px;
+}
+
+.nocar{
+    background-color: #ffcb15;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.avatar{
+    float: left;
+    padding: 15px 15px 30px 15px;
+    position: relative;
+}
+.avatar img{
+    width: 150px;
+}
+
+.profileform{
+    float: right;
+    width: 100%;
+}
+
+.detailsform{
+    float: right;
+    width: 450px;
+    padding: 15px;
+}
+
+#updateavatar{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200px;
+}
+
+.rentcarprice{
+    width: 400px;
+    padding: 5px;
+    margin: 15px;
+}
+
+#countbutton{
+    display: block;
+    color: white;
+    padding: 5px;
+    margin: 5px;
+    text-align: center;
+    text-transform: uppercase;
+    background-color: #171f1f;
+    border-radius: 2px;
+    width: 100px;
+}
+
+#countbutton:hover{
+    background-color: #314242;
+}
+
+#activefollowcar:hover{
+    background-color: #ffcb15;
+}
+
+#map {
+    height:420px;
+    width:100%;
+}
+.infoWindowContent {
+    font-size:  14px !important;
+    border-top: 1px solid #ccc;
+    padding-top: 10px;
+}
+h2 {
+    margin-bottom:0;
+    margin-top: 0;
+}
+
+
+/* style for responsive */
+
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .hcontent{
+        width: 700px;
+    }
+
+    .navbar ul{
+        position: static;
+        margin: 0 auto;
+    }
+
+    .content{
+        width: 700px;
+    }
+
+    .sidebar{
+        order: 1;
+        flex-basis: unset;
+        width: 100%;
+    }
+
+    .sidebar ul li ul li {
+        float: none;
+        width: 690px;
+    }
+
+
+    .main{
+        order: 2;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+    .content{
+        width: 80%;
+    }
+
+    .hcontent{
+        width: 80%;
+    }
+
+    .tittle{
+        float: none;
+    }
+
+    .navbar{
+        position: static;
+        margin: 0 auto;
+    }
+
+    .sidebar{
+        order: 1;
+        flex-basis: unset;
+        width: 100%;
+    }
+
+    .sidebar ul li span{
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .sidebar ul li ul li {
+        float: none;
+        width: 100%;
+        padding: 0;
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .main{
+        flex-basis: unset;
+        width: 93%;
+        order: 2;
+    }
+
+    .addtittle{
+        width: 189px;
+        font-size: 15px;
+    }
+
+    .tittlepage{
+        width: 300px;
+    }
+
+    .search{
+        width: 140px;
+        top: 0;
+    }
+
+    th, td{
+        padding: 0px;
+        text-align: center;
+        font-size: 10px;
+    }
+
+    tr button {
+        width: 20px;
+    }
+
+    .detailsform{
+        width: 90%;
+    }
+
+
+}

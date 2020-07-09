@@ -1,0 +1,968 @@
+/*
+*Layout style
+ */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Montserrat', sans-serif;
+}
+html {
+    scroll-behavior: smooth;
+}
+
+
+/*styles for links*/
+a:link, a:visited {
+    color: #a20700;
+    text-decoration: none;
+    font-weight: 500;
+}
+a:hover {
+    color: #4F0103;
+    text-decoration: none;
+}
+a:active {
+    color: #666666;
+}
+
+/*style for header */
+.container{
+    background-color: #ffffff;
+    border-bottom: 10px solid #af0600;
+    display: flow-root;
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+.header
+{
+    width: 1064px;
+    margin: 0 auto;
+    position: relative;
+    display: flow-root;
+}
+
+.header img{
+    display: block;
+    width: 120px;
+    float: left;
+    padding: 15px;
+}
+/* style for social network icons */
+.socialnetworkicons{
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #af0600;
+    padding: 15px;
+}
+
+.socialnetworkicons i{
+    color: #af0600;
+    font-size: 22px;
+    padding: 5px;
+}
+
+.socialnetworkicons i:hover{
+    color: #171f1f;
+}
+
+/* Ton navigation styles */
+.topnav {
+    position: absolute;
+    bottom: -10px;
+    right: 5px;
+}
+
+.topnav ul{
+    list-style: none;
+    overflow: hidden;
+    padding: 15px;
+    margin: 0;
+}
+
+.topnav ul li a:link,.topnav ul li a:visited{
+    text-decoration: none;
+    text-transform: uppercase;
+    color: black;
+}
+
+.topnav ul li, .nav ul li{
+    float: left;
+}
+
+.topnav ul  li a, .nav ul  li a{
+    display: block;
+    padding: 5px;
+    color: black;
+    text-transform: uppercase;
+    font-size: 15px;
+    text-decoration: none;
+}
+
+.topnav a:hover {
+    background-color: #ddd;
+    color: #af0600;
+}
+
+#activemenu{
+    background-color: #af0600;
+    color: white;
+}
+
+/*Style for fornt image */
+
+.frontimage{
+    background-image: url("../img/frontimage.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: 500px;
+    box-sizing: border-box;
+}
+.imgopaticy{
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.54);
+}
+.fronttext{
+    width: 700px;
+    margin: 0 auto;
+    padding-top: 100px;
+}
+
+.arrowdown{
+    display: block;
+    top: 10px;
+    text-align: center;
+}
+.arrowdown i {
+    font-size: 45px;
+    color: white;
+}
+
+.arrowup{
+    position: absolute;
+    right: 10px;
+    bottom: 5px;
+    font-size: 45px;
+    text-align: center;
+}
+
+.arrowup i{
+    color: white;
+}
+.arrowup i:hover{
+    color: #c6c6c6;
+}
+
+.fronttext p{
+    display: block;
+    padding: 15px;
+    text-align: center;
+    font-size: 25px;
+    text-transform: uppercase;
+    color: white;
+    font-weight: 700;
+
+}
+/* style for wrapper */
+.wrapper
+{
+    width: 1064px;
+    margin: 30px auto;
+    background-color: #e8e8e8;
+    -webkit-box-shadow: 0px 0px 50px -3px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 50px -3px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 50px -3px rgba(0,0,0,0.75);
+    position: relative;
+    display: flow-root;
+}
+
+.tittlecars{
+    width: 500px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: #af0600;
+    text-align: right;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+
+}
+
+.tittlecars h2{
+    color: white;
+    margin: 0 30px 0 0;
+    padding: 5px;
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.searchcar{
+    width: 370px;
+    float: right;
+    padding: 15px;
+    position: relative;
+}
+
+.sort{
+    width: 180px;
+    position: absolute;
+    left: 2px;
+    top: 15px;
+}
+
+.search{
+    width: 170px;
+    position: absolute;
+    right: 25px;
+    top: 15px;
+}
+
+.cars{
+    padding: 100px 15px 15px 15px;
+}
+
+.carsflex{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.titlerent{
+    width: 300px;
+    position: relative;
+    top: 5px;
+    left: 0;
+    color: white;
+    background-color: #af0600;
+    text-align: right;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+    padding: 5px 15px 5px 5px;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.aboutus{
+    background-image: url("/asset/img/backimage.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 30px 0 30px 0;
+    display: flow-root;
+    padding: 15px;
+    position: relative;
+}
+
+.aboutus .tittleinfo{
+    width: 300px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: #af0600;
+    text-align: right;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+.tittleinfo h2{
+    display: inline-block;
+    margin: 0 30px 0 0;
+    padding: 5px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.aboutus .textinfo{
+    float: right;
+    padding: 15px;
+    margin: 0 30px 0  0;
+    width: 300px;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.6);
+}
+
+.textinfo p {
+    padding: 0;
+    margin: 0;
+}
+
+.car{
+    flex-basis: 236px;
+    padding: 100px 5px 5px 5px;
+    text-align: left;
+    margin: 5px;
+    border: 1px solid #1a1a1a;
+    position: relative;
+    height: 250px;
+}
+
+.car:hover{
+    background-color: #c6c6c6;
+    border: 1px solid #af0600;
+}
+
+.car:active{
+    background-color: #9c9c9c;
+    border: 1px solid #820500;
+}
+
+.car img{
+    margin: 0 auto;
+    display: block;
+    width: 200px;
+    border-radius: 3px;
+}
+
+.cartittle{
+    font-size: 18px;
+    font-weight: bold;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0 100%);
+    background-color: #af0600;
+    width: 230px;
+    color: white;
+    text-align: center;
+}
+
+.classname{
+    clip-path: polygon(5% 0, 100% 0, 100% 100%, 0% 100%);
+    width: 135px;
+    color: white;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    font-weight: 400;
+    font-size: 18px;
+    font-style: italic;
+    text-align: center;
+}
+
+
+.buttonrent{
+    position: absolute;
+    bottom: 10px;
+    right: 5px;
+    background-color: #fccd12;
+    border-radius: 3px;
+    padding: 5px;
+    color: black;
+    text-transform: uppercase;
+
+}
+
+.buttonrent:hover{
+    background-color: #DB9200;
+    text-decoration: none;
+}
+
+.showcar{
+    display: flow-root;
+    border-bottom: 1px solid black;
+    padding: 50px 0 30px 0;
+}
+.showcar .tittlecar{
+    background-color: #af0600;
+    width: 500px;
+    position: absolute;
+    right: 0;
+    top: 15px;
+    text-align: left;
+    clip-path: polygon(0 0,100% 0, 100% 100%, 5% 100%);
+}
+
+.showcar h1 {
+    display: block;
+    color: white;
+    padding: 3px;
+    margin: 0 0 0 80px;
+    font-size: 25px;
+}
+.showcar .carinfo{
+    float: right;
+    margin-top: 50px;
+    padding: 15px;
+    text-transform: uppercase;
+    font-size: 20px;
+    background-color: #bababa;
+    border-radius: 2px;
+}
+
+.showcar img{
+    float: left;
+    display: block;
+    width: 450px;
+    margin: 15px;
+}
+
+.buttonforback{
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    color: #af0600;
+    font-size: 30px;
+}
+
+.buttonforback:hover{
+    color: #970601;
+}
+
+.buttonforback:active{
+    color: #6f0400;
+}
+
+.messagefalse{
+    background-color: #f15454;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+.messagetrue{
+    background-color: #8efc70;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+.racform{
+    margin-top: 15px;
+    padding-bottom: 50px;
+    display: flow-root;
+    position: relative;
+}
+
+.message{
+    padding: 5px 0 5px 0;
+    width: 100%;
+    text-align: center;
+    background-color: rgba(101, 201, 101, 0.58);
+}
+
+.racform .part{
+    padding: 10px;
+    float: left;
+}
+
+.racform .sendbutton{
+    position: absolute;
+    bottom: 3px;
+    margin: 15px;
+    left: 0;
+}
+
+.adress{
+    margin-top: 5px;
+}
+
+
+.warning{
+    clear: both;
+    background-color: rgba(187, 252, 181, 0.6);
+    padding: 15px;
+}
+
+.ratings{
+    padding: 15px;
+    display: flow-root;
+    position: relative;
+}
+
+.slider{
+    width: 400px;
+    display: flow-root;
+    float: left;
+}
+
+.buttonschange{
+    float: right;
+    display: flow-root;
+}
+
+.arrow{
+    font-size: 30px;
+    color: #af0600;
+}
+
+.arrow:hover{
+    color: #4F0103;
+}
+
+.left{
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+.rating{
+    margin: 5px;
+    padding: 5px;
+    font-size: 16px;
+}
+
+.stars i {
+    color: #ffdf01;
+}
+
+
+.ratingform{
+    float: right;
+    padding: 15px 15px 60px 15px;
+    width: 500px;
+    margin-top: 50px;
+    display: flow-root;
+    position: relative;
+}
+
+.ratingform .element{
+    float: left;
+}
+
+.ratingform button{
+    position: absolute;
+    left: 15px;
+    bottom: 0;
+}
+
+.commments{
+    display: flow-root;
+    padding: 15px;
+    background-color: rgba(187, 252, 181, 0.6);
+}
+
+.addcomment{
+    display: flow-root;
+    padding: 15px;
+}
+
+.tittlecomment{
+    float: right;
+    position: relative;
+    top: -56px;
+    right: -15px;
+    width: 300px;
+    background-color: #af0600;
+    text-align: left;
+    clip-path: polygon(0 0,100% 0, 100% 100%, 5% 100%);
+    padding: 5px 5px 5px 20px;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+.paddingcomments{
+    padding-top: 50px;
+    clear: both;
+}
+
+.tittlerating{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 300px;
+    background-color: #af0600;
+    text-align: left;
+    clip-path: polygon(0 0,100% 0, 100% 100%, 5% 100%);
+}
+
+.tittlerating h2{
+    display: inline-block;
+    margin: 0 0 0 30px;
+    padding: 5px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.contact{
+    background-color: #171f1f;
+    width: 100%;
+    display: flow-root;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    color: white;
+}
+
+.comment{
+    background-color: rgba(187, 252, 181, 0.8);
+    padding: 5px;
+}
+
+.commentName{
+    display: inline;
+    color: #af0600;
+    font-weight: 500;
+}
+
+.commentTime{
+    display: inline;
+    color: #6d6d6d;
+    font-weight: 400;
+}
+
+
+
+.contact .tittlecontact{
+    width: 300px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    background-color: #af0600;
+    text-align: right;
+    clip-path: polygon(0 0, 100% 0, 95% 100%, 0% 100%);
+}
+
+.tittlecontact h2{
+    display: inline-block;
+    margin: 0 30px 0 0;
+    padding: 5px;
+    color: white;
+    text-transform: uppercase;
+}
+
+.contactinfo{
+    float: left;
+    margin-top: 50px;
+    padding: 30px;
+}
+
+input[type=text], input[type=number], select, textarea, input[type=email] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+
+input[type=submit], button {
+    background-color: #fccd12;
+    color: black;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+input[type=submit]:hover, button:hover {
+    background-color: #DB9200;
+}
+
+.contactform{
+    float: right;
+    width: 400px;
+    padding: 30px;
+    margin-right: 50px;
+}
+
+
+#map {
+    position: absolute;
+    left: 30px;
+    bottom: 30px;
+    width: 500px;
+    height: 300px;
+    background-color: grey;
+}
+
+.message{
+    background-color: #f15454;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+.messagefalse{
+    background-color: #f15454;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+.messagetrue{
+    background-color: #8efc70;
+    padding: 15px;
+    text-align: center;
+    color: black;
+}
+
+.rentprice{
+    margin: 15px 0 15px 0;
+}
+
+
+
+
+
+
+/* style for footer */
+.footer {
+    background-color: #171f1f;
+    text-align: center;
+    padding: 15px;
+    border-top: 1px solid rgba(9, 12, 12, 0.77);;
+}
+
+.footer p {
+    display: block;
+    width: 500px;
+    margin: 15px auto;
+    text-align: center;
+    color: white;
+}
+
+/* style for responsive */
+
+
+@media screen and (max-width: 1023px) and (min-width: 768px) {
+    .wrapper{
+        width: 700px;
+    }
+
+    .topnav ul{
+        width: 500px;
+    }
+
+    .nav{
+        width: 700px;
+    }
+    .header{
+        width: 700px;
+    }
+
+    .car{
+        flex-basis: 313px;
+    }
+
+    .searchcar{
+        position: static;
+        display: flow-root;
+        float: none;
+        margin-top: 70px;
+    }
+
+    .search{
+        float: right;
+        position: static;
+    }
+
+    .sort{
+        position: static;
+        float: left;
+    }
+
+    .cars{
+        padding: 15px;
+    }
+
+    .slider{
+        width: 200px;
+    }
+
+    .ratingform{
+        width: 200px;
+    }
+
+    #map{
+        margin: 15px auto;
+        text-align: center;
+        left: 95px;
+    }
+
+    .contactinfo{
+        float: none;
+        margin-top: 50px;
+    }
+
+    .contactinfo p{
+        text-align: center;
+    }
+
+    .contactform{
+        float: none;
+        margin: 15px auto;
+        margin-bottom: 370px;
+    }
+
+    .showcar .carinfo{
+        float: none;
+        margin: 15px auto;
+        width: 320px;
+    }
+
+    .showcar img{
+        width: 350px;
+        margin: 15px auto;
+        float: none;
+    }
+
+    .racform{
+        height: unset;
+        padding-bottom: 60px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .wrapper{
+        width: 80%;
+    }
+
+    .nav{
+        width: 80%;
+    }
+
+    .header{
+        width: 80%;
+    }
+
+    .tittlecars{
+        width: 300px;
+        font-size: 13px;
+    }
+
+
+    .cars{
+        display: block;
+        padding: 15px;
+    }
+
+
+    .car{
+        text-align: center;
+        margin: 15px auto;
+    }
+
+    .searchcar{
+        position: static;
+        display: flow-root;
+        float: none;
+        margin-top: 70px;
+        max-width: 250px;
+    }
+
+    .search{
+        float: right;
+        position: static;
+    }
+
+    .sort{
+        position: static;
+        float: left;
+    }
+
+    .aboutus .textinfo{
+        float: none;
+        margin: 70px auto;
+    }
+
+    .slider{
+        width: 100%;
+        float: none;
+        margin-top: 70px;
+    }
+
+    .ratingform{
+        float: none;
+        width: 80%;
+        margin: 15px auto;
+    }
+
+    .ratingform .element{
+        float: none;
+    }
+
+    .contactinfo{
+        float: none;
+    }
+
+    .topnav{
+        position: static;
+        clear: both;
+        margin: 0 auto;
+        width: 300px;
+    }
+
+    .contactinfo{
+        float: none;
+        margin-top: 50px;
+    }
+
+    .contactinfo p{
+        text-align: center;
+    }
+
+    .contactform{
+        width: 80%;
+        float: none;
+        margin: 15px auto;
+        margin-bottom: 370px;
+    }
+
+    #map{
+        width: 80%;
+    }
+
+    .fronttext{
+        width: 70%;
+        margin: 0 auto;
+        padding-top: 30px;
+    }
+
+    .fronttext p{
+        display: block;
+        padding: 18px;
+        text-align: center;
+        font-size: 25px;
+        text-transform: uppercase;
+        color: white;
+        font-weight: 700;
+
+    }
+
+    .footer p{
+        display: block;
+        width: 300px;
+        margin: 0 auto;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .showcar .tittlecar{
+        width: 320px;
+    }
+
+    .showcar h1 {
+        font-size: 20px;
+    }
+
+    .showcar .carinfo{
+        float: none;
+        margin: 15px auto;
+        width: 270px;
+        font-size: 15px;
+    }
+
+    .showcar img{
+        margin: 15px auto;
+        width: 300px;
+        float: none;
+    }
+
+    .racform{
+        height: unset;
+        padding-bottom: 60px;
+    }
+}
+
+

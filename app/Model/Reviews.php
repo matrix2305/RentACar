@@ -10,10 +10,4 @@ class Reviews extends Model
     public $path;
 
     public $reviews;
-
-    public static function UpdateReview($urlpath) {
-        $class = new self();
-        $stmt = $class->conn->prepare('UPDATE reviews SET reviews = reviews + 1  WHERE path = ?');
-        $stmt->execute([$urlpath]);
-    }
 }

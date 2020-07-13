@@ -44,7 +44,7 @@ class CarsController
                     $uploaded_img_name = $_FILES['car_image']['name'];
                     $eks = strtolower(pathinfo($uploaded_img_name, PATHINFO_EXTENSION));
                     $image_name = $image .'.'. $eks;
-                    if (@!getimagesize($_FILES['car_image']['tmp_name']) or $eks == 'jpg') {
+                    if (@!is_array(getimagesize($_FILES["update_car_image"]["tmp_name"]))) {
                         $backrequest = [
                             'message' => 'Niste uneli sliku!',
                             'status' => false
@@ -156,7 +156,7 @@ class CarsController
                 $uploaded_image_name = $_FILES["update_car_image"]["name"];
                 $eks = strtolower(pathinfo($uploaded_image_name, PATHINFO_EXTENSION));
                 $image_name = $image . '.' . $eks;
-                if (@!getimagesize($_FILES['update_car_image']['tmp_name']) or $eks != 'jpg') {
+                if (@!is_array(getimagesize($_FILES["update_car_image"]["tmp_name"]))) {
                     $backrequest = [
                         'message' => 'Niste uneli sliku!',
                         'status' => false
@@ -179,6 +179,7 @@ class CarsController
                     $car->brands_id = $brand_id;
                     $car->class_id = $class_id;
                     $car->car_body_id = $car_body_id;
+                    $car->updated_at = date('m/d/Y H:i:s', time());
                     $car->save();
                     $car->hasFuels($fuels, $id);
 

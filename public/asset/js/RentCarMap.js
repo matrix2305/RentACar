@@ -7,7 +7,8 @@ AdminApp.controller('RentCarMap', function ($scope, $http, $rootScope) {
             for (let i = 0; i<$scope.positions.length; i++){
                 positions.push(
                     {
-                        time: 'Vreme: ' + $scope.positions[i].time,
+                        title: 'Vreme:',
+                        desc: $scope.positions[i].time,
                         lat: $scope.positions[i].x_position,
                         long: $scope.positions[i].y_position
                     }
@@ -16,7 +17,7 @@ AdminApp.controller('RentCarMap', function ($scope, $http, $rootScope) {
 
 
 
-            var mapOptions = {
+            let mapOptions = {
                 zoom: 11,
                 center: new google.maps.LatLng(43.857354, 21.411862),
                 mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -26,14 +27,20 @@ AdminApp.controller('RentCarMap', function ($scope, $http, $rootScope) {
 
             $scope.markers = [];
 
-            var infoWindow = new google.maps.InfoWindow();
+            let infoWindow = new google.maps.InfoWindow();
 
-            var createMarker = function (info){
+            let createMarker = function (info){
 
                 var marker = new google.maps.Marker({
                     map: $scope.map,
                     position: new google.maps.LatLng(info.lat, info.long),
                     title: info.title
+                });
+                marker.content = '<div class="infoWindowContent">' + info.desc + '</div>';
+
+                google.maps.event.addListener(marker, 'click', function(){
+                    infoWindow.setContent('<h2>' + marker.title + '</h2>' + marker.content);
+                    infoWindow.open($scope.map, marker);
                 });
 
                 $scope.markers.push(marker);

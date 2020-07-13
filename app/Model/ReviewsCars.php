@@ -1,11 +1,14 @@
 <?php
 declare(strict_types = 1);
 namespace App\Model;
-
+use ReflectionProperty;
+use ReflectionClass;
 use App\Logic\Model;
 class ReviewsCars extends Model
 {
     protected $tableName = 'reviews_cars';
+
+    public $id;
 
     public $ip_adress;
 
@@ -13,7 +16,7 @@ class ReviewsCars extends Model
 
     public $car_brand;
 
-    public $cars_id;
+    public $car_id;
 
     public static function getReviews() : array
     {

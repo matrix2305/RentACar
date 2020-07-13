@@ -17,7 +17,7 @@
     </div>
     <section class="cars" id="cars">
         <div class="carsflex">
-            <article class="car" ng-repeat="x in cars | filter : search | orderBy : order : true" ng-click="PrepareRentCar(x); sendreview(x.id, x.model, x.brand.brand_name);">
+            <article class="car" ng-repeat="x in cars | filter : search | orderBy : order : true" ng-click="PrepareRentCar(x);">
                 <div class="cartittle">
                     {{x.brand.brand_name +' '+ x.model | uppercase}}
                 </div>

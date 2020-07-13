@@ -1,16 +1,16 @@
 <div class="flex">
     <aside class="sidebar" >
         <ul>
-            <li class="primaryli"><span ng-class="{'active': first , 'span' : true}" ng-init="first = true; monitoring = 'active'" ng-click="include = 'monitoring'; firsttab = 'activetab'; secondtab = false ; first = true; monitoring='active'; statistic = false;  info = false">Pregled</span>
+            <li class="primaryli"><span ng-class="{'active': first , 'span' : true}" ng-init="first = true; monitoring = 'active'" ng-click="$root.include = 'monitoring'; firsttab = 'activetab'; secondtab = false ; first = true; monitoring='active'; statistic = false;  info = false">Pregled</span>
                 <ul ng-show="first">
-                    <li id='{{monitoring}}' ng-click="include = 'monitoring'; firsttab = 'activetab'; monitoring = 'active';  info = false;">Monitoring</li>
+                    <li id='{{monitoring}}' ng-click="$root.include = 'monitoring'; firsttab = 'activetab'; monitoring = 'active';  info = false;">Monitoring</li>
                 </ul>
             </li>
-            <li class="primaryli"><span ng-class="{'active': info, 'span' : true}" ng-click="include = 'info'; firsttab = false; first = false; secondtab = false ; info = true">Informacije</span></li>
+            <li class="primaryli"><span ng-class="{'active': info, 'span' : true}" ng-click="$root.include = 'info'; firsttab = false; first = false; secondtab = false ; info = true">Informacije</span></li>
         </ul>
     </aside>
     <main class="main">
-        <div class="container" ng-include="'/load/' + include + '.html'">
+        <div class="container" ng-include="'/load/' + $root.include + '.html'">
 
         </div>
     </main>
@@ -19,3 +19,5 @@
 <script src="/public/asset/js/Panel.js"></script>
 <script src="/public/asset/js/Monitoring.js"></script>
 <script src="/public/asset/js/Profile.js"></script>
+<script src="http://maps.googleapis.com/maps/api/js?sensor=false&language=sr"></script>
+<script src="/public/asset/js/RentCarMap.js"></script>

@@ -7,6 +7,7 @@ use App\Model\Logs;
 use App\Model\Reviews;
 use App\Model\ReviewsCars;
 use App\Model\Users;
+use Exception;
 
 class Helpers {
 
@@ -118,7 +119,7 @@ class Helpers {
             if (empty($checkReview)){
                 try {
                     $review = new ReviewsCars();
-                    $review->cars_id = $car_id;
+                    $review->car_id = $car_id;
                     $review->car_brand = $car_brand;
                     $review->car_model = $car_model;
                     $review->ip_adress = $ip_adress;
@@ -156,8 +157,10 @@ class Helpers {
                 $review = new Reviews();
                 $review->path = $url_path;
                 $review->reviews = 1;
+                $review->save();
             }else{
-                Reviews::UpdateReview($url_path);
+                $review->reviews =  $review->reviews + 1;
+                $review->save();
             }
         }
     }

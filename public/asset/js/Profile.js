@@ -1,7 +1,8 @@
 AdminApp.controller('Profile', function ($scope, $http, $timeout) {
     $scope.getYourProfile = function () {
-        $http.post('/getyourprofile').then(function (response) {
+        $http.post('/getyourprofile1').then(function (response) {
             $scope.yourprofile = response.data;
+            console.log(response.data);
             $scope.username = $scope.yourprofile.username;
             $scope.email = $scope.yourprofile.email;
             $scope.name = $scope.yourprofile.name;

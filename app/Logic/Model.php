@@ -166,6 +166,7 @@ class Model extends Connection
             $sql = "INSERT INTO {$this->tableName} SET {$setClause}";
         }
 
+
         try {
             $stmt = self::$conn->prepare($sql);
             $stmt->execute();

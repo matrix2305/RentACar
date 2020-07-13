@@ -5,7 +5,9 @@ MyApp.run( function($anchorScroll) {
 MyApp.controller('Portal', function ($scope, $interval, $http, $timeout) {
     $scope.sendreview = function(car_id, car_model, car_brand){
         $http.post('/addcarreview', {car_id: car_id, car_model: car_model, car_brand: car_brand},
-            {headers: {'Content-Type': 'application/x-www-form-urlencoded'}})
+            {headers: {'Content-Type': 'application/x-www-form-urlencoded'}}).then(function (response) {
+            console.log(response.data)
+        })
     }
 
 
@@ -166,6 +168,7 @@ MyApp.controller('Portal', function ($scope, $interval, $http, $timeout) {
 
             $scope.getCommentsCar($scope.car_id);
             $scope.include = 'rentcar';
+            $scope.sendreview(x.id, x.model, x.brand.brand_name);
     }
 
     $scope.rentCar = function (id, name, lastname, JMBG, email, mobile_phone, adress, price, rent_time_start, rent_time_end) {

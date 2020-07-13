@@ -4,13 +4,13 @@ paths:
 
 environments:
     default_migration_table: phinxlog
-    default_environment: development
+    default_environment: production
     production:
         adapter: mysql
         host: localhost
-        name: production_db
+        name: rentacar
         user: root
-        pass: ''
+        pass: '20071981777'
         port: 3306
         charset: utf8
 

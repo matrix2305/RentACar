@@ -26,6 +26,16 @@ class UsersController
         }
     }
 
+    public function showAdmin() {
+        if (Helpers::CheckLoggedIn()){
+            $id = $_SESSION['id'];
+            $user = Users::find(['id' => $id]);
+            echo json_encode($user);
+        }else{
+            return false;
+        }
+    }
+
     public function store() {
         if (Helpers::CheckPermission()){
             $request = Helpers::GetJsonRequest();

@@ -207,6 +207,9 @@ Route::post('/deleterating', 'RatingsController@destroy');
 // Route for get details of your profile
 Route::post('/getyourprofile', 'UsersController@show');
 
+// Route for get details of your profile
+Route::post('/getyourprofile1', 'UsersController@showAdmin');
+
 // Route for update your profile
 Route::post('/updateyourprofile', 'UsersController@update' );
 
